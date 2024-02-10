@@ -40,3 +40,17 @@
 .read-the-docs {
   color: #888;
 }
+@media (max-width: 1000px) {
+  .navbar a {
+    margin-right: 1rem;
+    font-size: 1rem;
+  }
+
+  .primary-button {
+    font-size: 1rem;
+  }
+
+  .home-bannerImage-container {
+    max-width: 600px;
+  }
+}
