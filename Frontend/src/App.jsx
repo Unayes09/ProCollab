@@ -1,16 +1,19 @@
 import { useState } from 'react'
 import './App.css'
 import Intro from './Intro'
+import LoginForm from './LoginForm/LoginForm';
 
 
-function App  () {
+
   //const [count, setCount] = useState(0)
-
+const App = () => {
   return (
-    <div className='home'>
-      <Intro />
-    </div>
-  )
-}
+    
+      <div>
+        <LoginForm/>
+      </div>
+   
+  );
+};
 
-export default App
+export default App;

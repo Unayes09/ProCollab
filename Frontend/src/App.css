@@ -23,6 +23,7 @@ body{
   align-items: center;
   padding: .25rem;
 }
+<<<<<<< HEAD
 .navbar ul{
   padding: 0;
   padding-right: 5rem;
@@ -30,4 +31,19 @@ body{
   list-style: none;
   display: flex;
   gap: 5rem;
+=======
+@media (max-width: 1000px) {
+  .navbar a {
+    margin-right: 1rem;
+    font-size: 1rem;
+  }
+
+  .primary-button {
+    font-size: 1rem;
+  }
+
+  .home-bannerImage-container {
+    max-width: 600px;
+  }
+>>>>>>> 18c305bbff4a2ebba50c7a6e18cdef1b446a6e58
 }
