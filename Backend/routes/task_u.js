@@ -6,4 +6,6 @@ router.post('/login',authController.Login)
 
 router.post('/register',authController.Register)
 
+router.post('/forget',authController.ForgetPassword)
+
 module.exports=router
