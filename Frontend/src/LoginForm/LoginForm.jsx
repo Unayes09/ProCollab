@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './LoginForm.css'
+import './LoginForm2.css'
 import { FaRegUserCircle } from "react-icons/fa";
 import { FaLock } from "react-icons/fa";
 
@@ -41,7 +42,7 @@ const LoginForm = () => {
                     username: UsernameData,
                     password: PasswordData
                 }
-                const response = await fetch('http//localhost:8000/auth/login', {
+                const response = await fetch('http://localhost:8000/auth/login', {
                     method:'POST',
                     headers: {
                         'Content-Type': 'application/json'
