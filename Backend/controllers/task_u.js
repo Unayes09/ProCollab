@@ -26,7 +26,7 @@ exports.Login = async (req,res)=>{
         .then(result=>{
             pass = result.password
         })
-        if(pass==""){
+        if(pass===""){
             res.status(401).json("Username is wrong!")
         }
         else{
