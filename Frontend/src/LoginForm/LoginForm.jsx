@@ -27,7 +27,8 @@ const LoginForm = () => {
                     username: UsernameData,
                     password: PasswordData
                 }
-                const response = await fetch('http//localhost:8000/auth/login', {
+                let jsonData = "";
+                const response = await fetch('http://localhost:8000/auth/login', {
                     method:'POST',
                     headers: {
                         'Content-Type': 'application/json'
