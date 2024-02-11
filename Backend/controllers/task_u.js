@@ -26,7 +26,10 @@ exports.Login = async (req,res)=>{
         .then(result=>{
             pass = result.password
         })
-        if(pass===""){
+        .catch(err=>{
+            //console.log(pass)
+        })
+        if(pass==""){
             res.status(401).json("Username is wrong!")
         }
         else{
@@ -92,6 +95,58 @@ exports.Register = async (req,res)=>{
             } else {
                 res.status(401).json("Username should be a single word")
             }
+        }
+        
+    })
+    .catch(err => res.status(401).json("Some problem occurred"));
+}
+
+exports.ForgetPassword = async(req,res)=>{
+    const username = req.body.username
+    //console.log(username)
+    UserModel.findOne({username:username})
+    .then(async user=>{
+        
+        if(user){
+            const email = user.email
+            //console.log(email)
+            const tokenBite = await generateRandomToken(6)
+            const token = tokenBite.toString()
+            const transporter = await nodemailer.createTransport({
+                service:'gmail',
+                auth: {
+                    user: process.env.USER,
+                    pass: process.env.PASS
+                }
+            });
+            
+            const info = await transporter.sendMail({
+                from: '"ProCollab" <ProCollab@gmail.com>', // sender address
+                to: email, // list of receivers
+                subject: "Forget Password", // Subject line
+                text: "Forget Password",
+                html: `<div>
+                    <p>Your new password is `+token+`. Use this password to log in. Please change this password after log in for your security.</p>
+                </div>`
+            });
+            const newPassword = await bcrypt.hash(token, 10);
+            const filter = { username: username };
+            const update = {
+              $set: { password: newPassword } 
+            };
+            
+            const result = await UserModel.updateOne(filter, update);
+            
+            if (result.modifiedCount === 1) {
+                console.log('Password updated successfully');
+                res.status(200).json("Password updated successfully")
+            } else {
+                console.log('No document found matching the filter');
+            }
+            //res.status(401).json("Email or Username already registered")
+        }
+        else{
+            res.status(401).json("Username isn't registered")
         }
         
     })
