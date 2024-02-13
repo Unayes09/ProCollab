@@ -1,6 +1,7 @@
 import './App.css'
 import LoginForm from './components/LoginForm';
 import Navbar from './components/Navbar';
+import RegisterForm from './components/RegisterForm';
 
 
 
@@ -9,7 +10,7 @@ const App = () => {
   return (
     <>
       <div>
-        <LoginForm />
+        <RegisterForm/>
       </div>
     </>
     

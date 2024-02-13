@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import logincss from './LoginForm.module.css'
+import logincss from './ForgetPassword.module.css'
 
 import { FaRegUserCircle } from "react-icons/fa";
 import { FaLock } from "react-icons/fa";
 import Navbar from './Navbar';
 
-const LoginForm = () => {
+const ForgetPassword = () => {
 
 
         const [UsernameData, setUsername] = useState()
@@ -78,4 +78,4 @@ const LoginForm = () => {
         );
     }
 
-export default LoginForm;
+export default ForgetPassword;
