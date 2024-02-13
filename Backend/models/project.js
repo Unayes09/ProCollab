@@ -1,5 +1,14 @@
 const mongoose = require('mongoose');
 
+const commentSchema = new mongoose.Schema({
+    name: {
+        type: String
+    },
+    comment: {
+        type: String
+    }
+})
+
 const projectSchema = new mongoose.Schema({
     project_holder: {
         type: String
@@ -31,14 +40,7 @@ const projectSchema = new mongoose.Schema({
     dislike: {
         type: Number
     },
-    comments: {
-        name: {
-            type: String
-        },
-        comment: {
-            type: String
-        }
-    }
+    comments: [commentSchema]
 });
 
 const Project = mongoose.model('project', projectSchema);

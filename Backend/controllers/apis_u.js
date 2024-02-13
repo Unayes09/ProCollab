@@ -129,3 +129,22 @@ exports.Resource = async(req,res)=>{
         res.status(404).send(error)
     }
 }
+
+exports.Search = async (req,res)=>{
+    try {
+        const keyword = req.query.word
+
+        const projects = await ProjectModel.find({
+            $or: [
+                { title: { $regex: new RegExp(keyword, 'i') } },
+                { description: { $regex: new RegExp(keyword, 'i') } },
+                { tags: { $regex: new RegExp(keyword, 'i') } }
+            ]
+        });
+
+        res.status(200).json(projects)
+    } catch (error) {
+        console.error(error)
+        res.status(500).json('Internal Server Error')
+    }
+}

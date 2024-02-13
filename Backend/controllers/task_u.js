@@ -269,3 +269,24 @@ exports.Feedback = async(req,res)=>{
         res.status(400).json("Error find.")
     }
 }
+
+exports.Comment = async(req,res)=>{
+    try {
+        const { projectId, username, comment } = req.body
+
+        const project = await ProjectModel.findById(projectId)
+
+        if (!project) {
+            return res.status(404).json('Project not found')
+        }
+
+        project.comments.push({ name: username, comment: comment })
+
+        await project.save();
+
+        res.status(200).json('Comment added successfully')
+    } catch (error) {
+        console.error(error)
+        res.status(500).json('Internal Server Error')
+    }
+}

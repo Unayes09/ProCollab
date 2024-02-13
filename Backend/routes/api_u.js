@@ -10,4 +10,6 @@ router.get('/verify',authController.verify)
 
 router.get('/resource',authController.Resource)
 
+router.get('/search',authController.Search)
+
 module.exports=router

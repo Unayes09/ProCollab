@@ -20,4 +20,6 @@ router.post('/dislike',authController.DisLike)
 
 router.post('/feedback',authController.Feedback)
 
+router.put('/comment',authController.Comment)
+
 module.exports=router
