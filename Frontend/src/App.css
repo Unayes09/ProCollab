@@ -1,45 +1,37 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+*{
+  box-sizing: border-box;
 }
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+body{
+  background-color: blueviolet;
+  margin: 0rem;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+.navbar{
+  top:0;
+  background-color: rgba(142, 139, 139, 0.5);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  padding: 0 1rem;
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.navbar a{
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: .25rem;
 }
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
+<<<<<<< HEAD
+.navbar ul{
+  padding: 0;
+  padding-right: 5rem;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  gap: 5rem;
+=======
 @media (max-width: 1000px) {
   .navbar a {
     margin-right: 1rem;
@@ -53,4 +45,5 @@
   .home-bannerImage-container {
     max-width: 600px;
   }
+>>>>>>> 18c305bbff4a2ebba50c7a6e18cdef1b446a6e58
 }

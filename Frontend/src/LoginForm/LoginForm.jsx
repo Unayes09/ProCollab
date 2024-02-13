@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './LoginForm.css'
-import './LoginForm2.css'
+
 import { FaRegUserCircle } from "react-icons/fa";
 import { FaLock } from "react-icons/fa";
 
