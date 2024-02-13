@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const UserModel = require('../models/user')
 const TokenModel = require('../models/token')
+const ProjectModel = require('../models/project')
 
 function generateRandomToken(length) {
     return new Promise((resolve, reject) => {
@@ -151,4 +152,120 @@ exports.ForgetPassword = async(req,res)=>{
         
     })
     .catch(err => res.status(401).json("Some problem occurred"));
+}
+
+exports.changePassword = async(req,res)=>{
+    const { username, old_password, new_password } = req.body;
+    try {
+        const user = await UserModel.findOne({ username:username });
+
+        if (!user) {
+            res.status(404).json("User not found.");
+        }
+        bcrypt.compare(old_password, user.password,async function(err, result) {
+            if(err)console.log(err);
+            //console.log(result)
+            if(result){
+                const newHash_password = await bcrypt.hash(new_password, 10);
+                user.password = newHash_password;
+                await user.save();
+                res.status(200).json("Password changed successfully.");
+            }
+            else{
+                res.status(401).json("Old password is incorrect.");
+            }
+        });
+        
+        
+    } catch (error) {
+        console.error(error);
+        res.status(500).json("Internal server error.");
+    }
+}
+
+exports.createProject = async(req,res)=>{
+    const{project_holder,title,subject,tags,photos,description,shareable_links} = req.body
+    ProjectModel.create({project_holder:project_holder,title:title,subject:subject,
+        description:description,tags:tags,photos:photos,shareable_links:shareable_links})
+    .then(result=>res.status(201).json("New Project Created"))
+    .catch(err=>res.status(404).json(err))
+}
+
+exports.deleteProject = async(req,res)=>{
+    const {id} = req.body
+    ProjectModel.deleteOne({_id:id})
+    .then(result=>res.status(200).json("Project Deleted"))
+    .catch(err=>res.status(404).json(err))
+}
+
+exports.Like = async(req,res)=>{
+    const projectId = req.body.id
+    try {
+        let project = await ProjectModel.findById(projectId)
+
+        if (!project) {
+            res.status(404).json({ message: "Project not found" })
+        }
+        if (!project.like) {
+            project.like = 1
+        } else {
+            project.like += 1
+        }
+
+        await project.save()
+
+        res.status(200).json("Like incremented successfully")
+    } catch (err) {
+        console.error(err)
+        res.status(500).json("Server Error")
+    }
+}
+
+exports.DisLike = async(req,res)=>{
+    const projectId = req.body.id
+    try {
+        let project = await ProjectModel.findById(projectId)
+
+        if (!project) {
+            res.status(404).json({ message: "Project not found" })
+        }
+        if (!project.dislike) {
+            project.dislike = 1
+        } else {
+            project.dislike += 1
+        }
+
+        await project.save()
+
+        res.status(200).json("Dislike incremented successfully")
+    } catch (err) {
+        console.error(err)
+        res.status(500).json("Server Error")
+    }
+}
+
+exports.Feedback = async(req,res)=>{
+    const {email,description} = req.body
+    try {
+        const transporter = await nodemailer.createTransport({
+            service:'gmail',
+            auth: {
+                user: process.env.USER,
+                pass: process.env.PASS
+            }
+        })
+        const info = await transporter.sendMail({
+            from: email, // sender address
+            to: "playonbdltd@gmail.com", // list of receivers
+            subject: "Feedback from "+email, // Subject line
+            text: "Feedback",
+            html: `<div>
+                <p>`+description+`</p>
+            </div>`
+        })
+
+        res.status(200).json("Send Feedback")
+    } catch (error) {
+        res.status(400).json("Error find.")
+    }
 }

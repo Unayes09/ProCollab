@@ -1,5 +1,12 @@
 const TokenModel = require('../models/token')
 const UserModel = require('../models/user')
+const ProjectModel = require('../models/project')
+const jwt = require('jsonwebtoken')
+const OpenAI = require('openai')
+
+const openai = new OpenAI({
+    apiKey:process.env.openai_key
+})
 
 exports.findToken = async (req, res) => {
     const token = req.query.token
@@ -52,4 +59,73 @@ exports.findToken = async (req, res) => {
     `;
 
     await res.send(htmlContent)
+}
+
+exports.allProjects = async(req,res)=>{
+    try {
+        if (req.query.id) {
+            const project = await ProjectModel.findById(req.query.id)
+            if (!project) {
+                res.status(404).json('Project not found')
+            }
+            res.status(200).json(project)
+        } 
+        else if (req.query.user) {
+            const project = await ProjectModel.find({project_holder:req.query.user})
+            if (!project) {
+                res.status(404).json('Project not found')
+            }
+            res.status(200).json(project)
+        } 
+        else {
+            const projects = await ProjectModel.find()
+            res.status(200).json(projects);
+        }
+    } catch (error) {
+        res.status(500).json('Internal server error');
+    }
+}
+
+exports.verify = async (req,res)=>{
+    const token = req.cookies.token
+    if(!token)res.status(401).json("The token was not available")
+    else{
+        jwt.verify(token,process.env.jwt_secret_key,(err,decoded)=>{
+            if(err)res.status(404).json("Token is wrong")
+            res.status(200).json("Allready logged in")
+        })
+    }
+}
+
+exports.Resource = async(req,res)=>{
+    try {
+    const user = req.query.user
+    const userRes = await UserModel.findOne({ username:user });
+    if (!userRes) {
+        res.status(404).json('User not found')
+    }
+    const interests = userRes.interests;
+    if(interests.length==0){
+        res.status(200).json('Nothing to show!')
+    }
+    else{
+        let instructionsAndResources = `I am interested in `
+        for (let i = 0; i < interests.length; i++) {
+            instructionsAndResources+=interests[i]+", "
+        }
+        instructionsAndResources += `Please give me some instructions on how to be good in these fields, `
+        instructionsAndResources += `and give some resources or playlist or something else to follow to learn.
+        And give the response in just html codes with some design.Dont use any other writing without html code.
+        Give it shortly, if it is possible to give the response in 100 words`
+        
+        const response = await openai.chat.completions.create({
+            model: 'gpt-3.5-turbo',
+            messages:[{"role":"user","content":instructionsAndResources}]
+        })
+        
+        res.status(200).send(response.choices[0].message.content)
+    }
+    } catch (error) {
+        res.status(404).send(error)
+    }
 }
