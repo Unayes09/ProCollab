@@ -12,4 +12,6 @@ router.get('/resource',authController.Resource)
 
 router.get('/search',authController.Search)
 
+router.get('/username',authController.User)
+
 module.exports=router

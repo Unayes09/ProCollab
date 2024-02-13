@@ -148,3 +148,19 @@ exports.Search = async (req,res)=>{
         res.status(500).json('Internal Server Error')
     }
 }
+
+exports.User = async(req,res)=>{
+    try {
+        const token = req.cookies.token
+        if (!token) {
+            res.status(401).json('JWT token not found')
+        }
+        else{
+            const decodedToken = jwt.verify(token, process.env.jwt_secret_key)
+            const username = decodedToken.username
+            res.status(200).json({ username })
+        }
+    } catch (error) {
+        res.status(401).json('Invalid JWT token')
+    }
+}

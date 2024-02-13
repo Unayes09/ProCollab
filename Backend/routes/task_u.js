@@ -22,4 +22,6 @@ router.post('/feedback',authController.Feedback)
 
 router.put('/comment',authController.Comment)
 
+router.post('/logout',authController.Logout)
+
 module.exports=router

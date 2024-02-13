@@ -290,3 +290,13 @@ exports.Comment = async(req,res)=>{
         res.status(500).json('Internal Server Error')
     }
 }
+
+exports.Logout = async(req,res)=>{
+    try {
+        const token = req.cookies.token
+        res.clearCookie('token')
+        res.json('Logged out successfully')
+    } catch (error) {
+        res.json('Error occured')
+    }
+}
