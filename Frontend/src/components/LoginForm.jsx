@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import './LoginForm.css'
+import logincss from './LoginForm.module.css'
 
 import { FaRegUserCircle } from "react-icons/fa";
 import { FaLock } from "react-icons/fa";
+import Navbar from './Navbar';
 
 const LoginForm = () => {
 
@@ -48,29 +49,32 @@ const LoginForm = () => {
         };
 
 
-        return (
-            <div className='wrapper'>
+    return (
+        <>
+            <Navbar/>
+            <div className={logincss.wrapper}>
                 <form onSubmit={handleSubmit}>
                     <h1>Login</h1>
-                    <div className="input-box">
+                    <div className={logincss.inputbox}>
                         <input type="text" placeholder='Username' required name="Username" onChange={(e)=>setUsername(e.target.value)}/>
-                        <FaRegUserCircle className='icon' />
+                        <FaRegUserCircle className={logincss.icon} />
                     </div>
-                    <div className="input-box">
+                    <div className={logincss.inputbox}>
                         <input type="password" placeholder='Password' required onChange={(e) => setPassword(e.target.value)} />
                         
-                        <FaLock className='icon' />
+                        <FaLock className={logincss.icon} />
                     </div>
-                    <div className="remember-forgot">
+                    <div className={logincss.rememberforgot}>
                         <a href='#'>Forgot password?</a>
                     </div>
-                    <button type="submit">Login</button>
-                    <div className="register-link">
+                    <button type="submit"><a href='/;sjrfd' className={logincss.loginbutton}>Login</a></button>
+                    <div className={logincss.registerlink}>
                         <p>Don't Have an account? <a href='#'>Register</a></p>
                     </div>
                 </form>
            
             </div>
+            </>
         );
     }
 
