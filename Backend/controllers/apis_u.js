@@ -1,5 +1,6 @@
 const TokenModel = require('../models/token')
 const UserModel = require('../models/user')
+const ChannelModel = require('../models/channel')
 const ProjectModel = require('../models/project')
 const jwt = require('jsonwebtoken')
 const OpenAI = require('openai')
@@ -162,5 +163,51 @@ exports.User = async(req,res)=>{
         }
     } catch (error) {
         res.status(401).json('Invalid JWT token')
+    }
+}
+
+exports.allChannels = async(req,res)=>{
+    try {
+        if (req.query.id) {
+            const project = await ChannelModel.findById(req.query.id)
+            if (!project) {
+                res.status(404).json('Channel not found')
+            }
+            res.status(200).json(project)
+        } 
+        else if (req.query.user) {
+            const project = await ChannelModel.find({channel_holder:req.query.user})
+            if (!project) {
+                res.status(404).json('Channel not found')
+            }
+            res.status(200).json(project)
+        } 
+        else {
+            const projects = await ChannelModel.find()
+            res.status(200).json(projects);
+        }
+    } catch (error) {
+        res.status(500).json('Internal server error');
+    }
+}
+
+exports.getUser = async(req,res)=>{
+    try {
+        const username = req.body.username
+
+        const user = await UserModel.findOne({ username:username })
+
+        if (!user) {
+            res.status(404).json("User not found")
+        }
+        else res.status(200).json({
+            name: user.name,
+            username: user.username,
+            email: user.email,
+            interests: user.interests
+        })
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({ error: "Internal Server Error" })
     }
 }

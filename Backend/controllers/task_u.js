@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken')
 const UserModel = require('../models/user')
 const TokenModel = require('../models/token')
 const ProjectModel = require('../models/project')
+const ChannelModel = require('../models/channel')
 
 function generateRandomToken(length) {
     return new Promise((resolve, reject) => {
@@ -298,5 +299,100 @@ exports.Logout = async(req,res)=>{
         res.json('Logged out successfully')
     } catch (error) {
         res.json('Error occured')
+    }
+}
+
+exports.createChannel = async(req,res)=>{
+    const{channel_holder,title,tags,description} = req.body
+    ChannelModel.create({channel_holder:channel_holder,title:title,
+        description:description,tags:tags})
+    .then(result=>res.status(201).json("New Channel Created"))
+    .catch(err=>res.status(404).json(err))
+}
+
+exports.Talk = async(req,res)=>{
+    try {
+        const { channelId, username, talk } = req.body
+
+        const channel = await ChannelModel.findById(channelId)
+
+        if (!channel) {
+            return res.status(404).json('Project not found')
+        }
+
+        channel.talks.push({ name: username, talk:talk })
+
+        await channel.save();
+
+        res.status(200).json('Talk added successfully')
+    } catch (error) {
+        console.error(error)
+        res.status(500).json('Internal Server Error')
+    }
+}
+
+exports.deleteChannel = async(req,res)=>{
+    const {id} = req.body
+    ChannelModel.deleteOne({_id:id})
+    .then(result=>res.status(200).json("Channel Deleted"))
+    .catch(err=>res.status(404).json(err))
+}
+
+exports.deleteComment = async(req,res)=>{
+    try {
+        const projectId = req.params.projectId
+        const commentId = req.params.commentId
+        const project = await ProjectModel.findById(projectId)
+
+        if (!project) {
+            res.status(404).json("Project not found")
+        }
+        else{
+            
+            const commentIndex = project.comments.findIndex(comment => comment._id.toString() === commentId)
+
+            if (commentIndex === -1) {
+                res.status(404).json("Comment not found")
+            }
+            else{
+                project.comments.splice(commentIndex, 1)
+                await project.save()
+                res.status(200).json("Comment deleted successfully")
+            }
+        }
+
+    } catch (error) {
+        console.error(error)
+        res.status(500).json("Internal Server Error")
+    }
+}
+
+exports.deleteTalk = async(req,res)=>{
+    try {
+        const channelId = req.params.channelId;
+        const talkId = req.params.talkId;
+
+        const channel = await ChannelModel.findById(channelId)
+
+        if (!channel) {
+            res.status(404).json("Channel not found")
+        }
+        else{
+            const talkIndex = channel.talks.findIndex(talk => talk._id.toString() === talkId)
+
+            if (talkIndex === -1) {
+                res.status(404).json("Talk not found")
+            }
+            else{
+                channel.talks.splice(talkIndex, 1)
+                await channel.save()
+                res.status(200).json("Talk deleted successfully")
+            }
+        }
+        
+
+    } catch (error) {
+        console.error(error)
+        res.status(500).json("Internal Server Error")
     }
 }

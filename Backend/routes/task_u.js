@@ -24,4 +24,14 @@ router.put('/comment',authController.Comment)
 
 router.post('/logout',authController.Logout)
 
+router.post('/createChannel',authController.createChannel)
+
+router.post('/talk',authController.Talk)
+
+router.delete('/deleteChannel',authController.deleteChannel)
+
+router.delete('/projects/:projectId/comments/:commentId',authController.deleteComment)
+
+router.delete('/channels/:channelId/talks/:talkId',authController.deleteTalk)
+
 module.exports=router

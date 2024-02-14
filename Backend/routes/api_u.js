@@ -14,4 +14,8 @@ router.get('/search',authController.Search)
 
 router.get('/username',authController.User)
 
+router.get('/channels',authController.allChannels)
+
+router.get('/user',authController.getUser)
+
 module.exports=router
