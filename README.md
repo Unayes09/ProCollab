@@ -33,8 +33,9 @@ ProCollab will provide a user-friendly interface for users to create profiles, u
 2. Users should be able to view, rate, and comment on educational resources.
 
 ### Search Functionality
-1. Users should be able to search for projects based on keywords or tags.
-2. Users should be able to filter search results by criteria such as date, popularity, or relevance.
+1. Users should be able to search for projects based on keywords, project name, description, or tags.
+2. The search should be case insensitive.
+3. Users should be able to filter search results by criteria such as date, popularity, or relevance.
 
 ## Non-Functional Requirements
 
