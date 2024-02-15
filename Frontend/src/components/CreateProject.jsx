@@ -15,6 +15,28 @@ const CreateProject = () => {
     navigate('/login')
 }
 
+useEffect(() => {
+  const checkLoggedIn = async () => {
+      try {
+          const token = localStorage.getItem('token')
+          const response = await fetch('http://localhost:8000/api/verify/'+token, {
+              method: 'GET',
+              headers: {
+                  'Content-Type': 'application/json',
+              }
+
+          });
+          if (!response.ok) {
+              routetohome()
+          }
+      } catch (error) {
+          console.error('Error checking login status:', error);
+      }
+  };
+
+  checkLoggedIn();
+}, []);
+
   useEffect(() => {
     const checkUsername = async () => {
         try {
@@ -37,28 +59,6 @@ const CreateProject = () => {
     };
 
     checkUsername();
-}, []);
-
-useEffect(() => {
-  const checkLoggedIn = async () => {
-      try {
-          const token = localStorage.getItem('token')
-          const response = await fetch('http://localhost:8000/api/verify/'+token, {
-              method: 'GET',
-              headers: {
-                  'Content-Type': 'application/json',
-              }
-
-          });
-          if (!response.ok) {
-              routetohome()
-          }
-      } catch (error) {
-          console.error('Error checking login status:', error);
-      }
-  };
-
-  checkLoggedIn();
 }, []);
 
   const [projectData, setProjectData] = useState({

@@ -103,9 +103,9 @@ exports.Register = async (req,res)=>{
 }
 
 exports.ForgetPassword = async(req,res)=>{
-    const username = req.body.username
+    const username = req.body.email
     //console.log(username)
-    UserModel.findOne({username:username})
+    UserModel.findOne({email:username})
     .then(async user=>{
         
         if(user){
@@ -131,7 +131,7 @@ exports.ForgetPassword = async(req,res)=>{
                 </div>`
             });
             const newPassword = await bcrypt.hash(token, 10);
-            const filter = { username: username };
+            const filter = { email: username };
             const update = {
               $set: { password: newPassword } 
             };
