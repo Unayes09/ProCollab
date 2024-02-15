@@ -20,6 +20,7 @@
     padding-top: 2%;
     max-height: 90%;
     margin: 10px;
+    padding-left: 10px;
     
 }
 .leftsection h1{
@@ -39,10 +40,9 @@
     display: flex;
     justify-self: center;
     margin-top: 20px;
-   
     column-gap: 20px;
     align-items: flex-start;
-    padding-bottom: 10%;
+    padding-bottom: 3%;
     padding-left: 10%;
 
 }
@@ -91,3 +91,25 @@ backdrop-filter: blur(10px);
     /* Maintain aspect ratio */
 }
 /* Add more styling based on your preferences */
+.comment_area{
+    max-height: 100px;
+    min-height: 100px;
+    min-width: 100%;
+    max-width: 100%;
+    resize: none;
+    padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 3px;
+}
+/* ... (existing styles) */
+
+.commentButton {
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+}
+
+/* ... (existing styles) */

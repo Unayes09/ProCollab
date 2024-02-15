@@ -68,17 +68,9 @@ function Home() {
                                 className={homecss.searchBar}
                             />
                         </div>
-                        <button className={homecss.createButton}>Create</button>
-                        <div className={homecss.menuButtonContainer}>
-                            <button className={homecss.menuButton}>
-                                <img src="/vite.svg" alt="Menu" />
-                            </button>
-                            <div className={homecss.dropdownMenu}>
-                                <p>My Profile</p>
-                                <p>Projects</p>
-                                <p>Settings</p>
-                            </div>
-                        </div>
+                        <button className={homecss.searchButton}>Search</button>
+                        <button className={homecss.createButton}><a href='/createproject' className={homecss.createButton}>Create</a></button>
+                        
                     </div>
                     <div className={homecss.rightsection2}>
                         {/* List of Cards */}
