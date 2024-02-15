@@ -1,6 +1,6 @@
 /* ChatBox.css */
 
-.app-wrapper {
+.appwrapper {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,13 +10,13 @@
     /* Prevent the whole page from scrolling */
 }
 
-.chat-box-container {
+.chatboxcontainer {
     display: flex;
     width: 100vw;
     /* Take the whole width of the viewport */
 }
 
-.channels-section {
+.channelssection {
     flex: 1;
     border-right: 1px solid #ccc;
     padding: 10px;
@@ -26,7 +26,7 @@
     /* Take the full height of the viewport minus some space */
 }
 
-.channel-list {
+.channellist {
     display: flex;
     flex-direction: column;
 }
@@ -45,7 +45,7 @@
     background-color: #ddd;
 }
 
-.chat-section {
+.chatsection {
     flex: 2;
     display: flex;
     flex-direction: column;
@@ -53,23 +53,23 @@
     /* Take the full height of the viewport minus some space */
 }
 
-.channel-name {
+.channelname {
     padding: 10px;
     border-bottom: 1px solid #ccc;
 }
 
-.chat-container {
+.chatcontainer {
     flex: 1;
     overflow-y: auto;
     /* Enable scrolling */
     padding: 10px;
 }
 
-.chat-message {
+.chatmessage {
     margin-bottom: 10px;
 }
 
-.message-input {
+.messageinput {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -77,13 +77,13 @@
     background-color: #eee;
 }
 
-.message-input input {
+.messageinput input {
     flex: 1;
     padding: 8px;
     margin-right: 10px;
 }
 
-.message-input button {
+.messageinput button {
     background-color: #000000;
     color: #ffffff;
     padding: 8px;
@@ -92,6 +92,6 @@
     cursor: pointer;
 }
 
-.message-input button:hover {
+.messageinput button:hover {
     background-color: #333333;
 }

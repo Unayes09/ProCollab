@@ -3,17 +3,14 @@
 import React, { useState, useEffect } from 'react';
 import { RiSendPlane2Line } from 'react-icons/ri'; // Import the send icon from react-icons
 
-import './ChatBox.css'; // Import your CSS file
+import ChatBoxCss from './ChatBox.module.css'; // Import your CSS file
 import Navbar from './Navbar';
 
 const ChatBox = () => {
   // Dummy data for channels and chat messages
-  const [channels, setChannels] = useState(Array.from({ length: 20 }, (_, index) => ({
-    id: index + 1,
-    name: `Channel ${index + 1}`,
-  })));
+  
 
-  const [currentChannel, setCurrentChannel] = useState(channels[0]);
+  
 
   const [chatMessages, setChatMessages] = useState(Array.from({ length: 30 }, (_, index) => ({
     id: index + 1,
@@ -54,36 +51,31 @@ const ChatBox = () => {
 
     <>
       <Navbar/>
-    <div className="app-wrapper">
-      <div className="chat-box-container">
-        <div className="channels-section">
-          <h2>Channels</h2>
-          <div className="channel-list">
-            {/* Map through channels and display channel names */}
-            {channels.map(channel => (
-              <div key={channel.id} className={`channel ${currentChannel.id === channel.id ? 'active' : ''}`} onClick={() => setCurrentChannel(channel)}>
-                {channel.name}
-              </div>
-            ))}
-          </div>
+      <div className={ChatBoxCss.appwrapper}>
+        <div className={ChatBoxCss.chatboxcontainer}>
+          <div className={ChatBoxCss.channelssection}>
+            <h2>Channel:</h2>
+            <p>channel name:  </p>
+            <p>channel description </p>
+            
         </div>
 
-        <div className="chat-section">
-          <div className="channel-name">
-            <h2>{currentChannel.name}</h2>
+          <div className={ChatBoxCss.chatsection}>
+            <div className={ChatBoxCss.channelname}>
+            <h2>channel name now at</h2>
           </div>
 
-          <div className="chat-container" id="chat-container">
+            <div className={ChatBoxCss.chatcontainer} id="chat-container">
             {/* Map through chatMessages and display chat messages */}
             {chatMessages.map(message => (
-              <div key={message.id} className="chat-message">
+              <div key={message.id} className={ChatBoxCss.chatmessage}>
                 <p><strong>{message.sender}:</strong> {message.message}</p>
                 <span>{new Date(message.timestamp).toLocaleTimeString()}</span>
               </div>
             ))}
           </div>
 
-          <div className="message-input">
+            <div className={ChatBoxCss.messageinput}>
             <input
               type="text"
               placeholder="Type your message..."

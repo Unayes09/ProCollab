@@ -64,8 +64,8 @@ const LoginForm = () => {
                 body: JSON.stringify(formData)
 
             })
-            .then(response => {
-                const data = response.json()
+            .then(async response => {
+                const data =await response.json()
                 const token = data.token
                 localStorage.setItem('token',token)
                 routetohome()
