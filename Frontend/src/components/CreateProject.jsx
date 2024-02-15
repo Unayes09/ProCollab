@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {  AiOutlineCloseCircle } from 'react-icons/ai'; // Import add and remove icons from react-icons
 
-import './CreateProject.css'; // Import your CSS file
+import CreateProjectCss from './CreateProject.module.css'; // Import your CSS file
 import Navbar from './Navbar';
 
 const CreateProject = () => {
@@ -62,19 +62,12 @@ const CreateProject = () => {
     <>
     <Navbar/>
 
-    <div className="wrapper">
-      <div className="create-project-box">
+      <div className={CreateProjectCss.wrapper}>
+        <div className={CreateProjectCss.createprojectbox}>
         <h2>Create a New Project</h2>
-        <div className="input-group">
-          <label>Project Holder</label>
-          <input
-            type="text"
-            value={projectData.project_holder}
-            onChange={(e) => setProjectData({ ...projectData, project_holder: e.target.value })}
-          />
-        </div>
+          
 
-        <div className="input-group">
+          <div className={CreateProjectCss.inputgroup}>
           <label>Title</label>
           <input
             type="text"
@@ -83,7 +76,7 @@ const CreateProject = () => {
           />
         </div>
 
-        <div className="input-group">
+          <div className={CreateProjectCss.inputgroup}>
           <label>Subject</label>
           <input
             type="text"
@@ -92,7 +85,7 @@ const CreateProject = () => {
           />
         </div>
 
-        <div className="input-group">
+        <div className={CreateProjectCss.inputgroup}>
           <label>Tags</label>
           <select onChange={(e) => handleTagChange(e.target.value)}>
             <option value="">Select Tag</option>
@@ -102,18 +95,18 @@ const CreateProject = () => {
               </option>
             ))}
           </select>
-          <div className="tags">
+            <div className={CreateProjectCss.tags}>
             {projectData.tags.map((tag, index) => (
-              <div key={index} className="tag">
+              <div key={index} className={CreateProjectCss.tag}>
                 {tag}
-                <AiOutlineCloseCircle className="remove-icon" onClick={() => handleRemoveTag(tag)} />
+                <AiOutlineCloseCircle className={CreateProjectCss.removeicon} onClick={() => handleRemoveTag(tag)} />
               </div>
             ))}
           </div>
          
         </div>
 
-        <div className="input-group">
+          <div className={CreateProjectCss.inputgroup}>
           <label>Upload Photos</label>
           <input
             type="file"
@@ -121,16 +114,16 @@ const CreateProject = () => {
             multiple
             onChange={handlePhotoChange}
           />
-          <div className="photos">
-            {projectData.photos.map((photo, index) => (
-              <div key={index} className="photo">
+            <div className={CreateProjectCss.photos}>
+              {projectData.photos.map((photo, index) => (
+                <div key={index} className={CreateProjectCss.photo}>
                 <img src={photo} alt={`Photo ${index}`} />
               </div>
             ))}
           </div>
         </div>
 
-        <div className="input-group">
+          <div className={CreateProjectCss.inputgroup}>
           <label>Description</label>
           <textarea
             value={projectData.description}
@@ -138,7 +131,7 @@ const CreateProject = () => {
           />
         </div>
 
-        <div className="input-group">
+          <div className={CreateProjectCss.inputgroup}>
           <label>Shareable Links</label>
           <input
             type="text"
@@ -147,7 +140,7 @@ const CreateProject = () => {
           />
         </div>
 
-        <button className="create-button" onClick={handleSubmit}>
+          <button className={CreateProjectCss.createbutton} onClick={handleSubmit}>
           Create Project
         </button>
       </div>

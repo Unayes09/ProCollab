@@ -20,7 +20,7 @@
        
 }
 
-.create-project-box {
+.createprojectbox {
     background-color: #fff;
     padding: 20px;
     border: 1px solid #000;
@@ -38,12 +38,12 @@
     
 }
 
-.input-group {
+.inputgroup {
     margin-bottom: 2px;
     padding-right: 2px;
     width: 370px;
 }
-.input-group textarea {
+.inputgroup textarea {
     margin-bottom: 5px;
     max-width: 370px;
     
@@ -79,7 +79,7 @@ textarea {
     position: relative;
 }
 
-.remove-icon {
+.removeicon {
     cursor: pointer;
     position: absolute;
     top: 0;
@@ -87,7 +87,7 @@ textarea {
     color: #fff;
 }
 
-.add-icon {
+.addicon {
     cursor: pointer;
     font-size: 20px;
     margin-left: 5px;
@@ -109,7 +109,7 @@ textarea {
     max-height: 100px;
 }
 
-.create-button {
+.createbutton {
     background-color: #000;
     color: #fff;
     padding: 10px;
@@ -118,6 +118,6 @@ textarea {
     cursor: pointer;
 }
 
-.create-button:hover {
+.createbutton:hover {
     background-color: #555;
 }
