@@ -88,11 +88,11 @@ exports.allProjects = async(req,res)=>{
 }
 
 exports.verify = async (req,res)=>{
-    const token = req.cookies.token
+    const token = req.params.token
     if(!token)res.status(401).json("The token was not available")
     else{
         jwt.verify(token,process.env.jwt_secret_key,(err,decoded)=>{
-            if(err)res.status(404).json("Token is wrong")
+            if(err){res.status(404).json("Token is wrong");console.log('mara')}
             res.status(200).json("Allready logged in")
         })
     }
@@ -152,7 +152,7 @@ exports.Search = async (req,res)=>{
 
 exports.User = async(req,res)=>{
     try {
-        const token = req.cookies.token
+        const token = req.params.token
         if (!token) {
             res.status(401).json('JWT token not found')
         }

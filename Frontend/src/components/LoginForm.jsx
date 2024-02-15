@@ -4,12 +4,41 @@ import logincss from './LoginForm.module.css'
 import { FaRegUserCircle } from "react-icons/fa";
 import { FaLock } from "react-icons/fa";
 import Navbar from './Navbar.jsx';
+import { useNavigate } from 'react-router-dom';
+
+
 
 const LoginForm = () => {
 
-
+    const navigate = useNavigate()
     const [UsernameData, setUsername] = useState()
     const [PasswordData, setPassword] = useState()
+    const [loginError, setLoginError] = useState(false);
+    function routetohome(){
+        navigate('/homepage')
+    }
+    useEffect(() => {
+        const checkLoggedIn = async () => {
+            try {
+                const token = localStorage.getItem('token')
+                console.log(token)
+                const response = await fetch('http://localhost:8000/api/verify/'+token, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+
+                });
+                if (response.ok) {
+                    routetohome()
+                }
+            } catch (error) {
+                console.error('Error checking login status:', error);
+            }
+        };
+
+        checkLoggedIn();
+    }, []);
 
     useEffect(() => {
         console.log('Form data changed:', UsernameData);
@@ -23,26 +52,30 @@ const LoginForm = () => {
         e.preventDefault();
 
         try {
-            //console.log('Form data submitted:', formData);
             const formData = {
                 username: UsernameData,
                 password: PasswordData
             }
             let jsonData = "";
-            const response = await fetch('http://localhost:8000/auth/login', {
+            await fetch('http://localhost:8000/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(formData)
 
-            });
-            jsonData = await response.json()
-            if (response.ok) {
-                console.log(jsonData)
-            } else {
-                console.log(jsonData)
-            }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    setLoginError(true);
+                }
+                return response.json()
+            })
+            .then(data => {
+                const token = data.token
+                localStorage.setItem('token',token)
+                routetohome()
+            })
         } catch (error) {
             console.error('Error submitting form:', error);
         }
@@ -55,7 +88,12 @@ const LoginForm = () => {
             <Navbar />
             <div className={logincss.wrapper}>
                 <form onSubmit={handleSubmit}>
-                    <h1>Login</h1>
+                        <h1>Login</h1>
+                        {loginError &&<div className={logincss.additionalText}>
+                            <p style={{ color: 'red', fontSize: '12px', marginTop:'40px' }}>
+                                Wrong username or password
+                            </p>
+                        </div>}
                     <div className={logincss.inputbox}>
                         <input type="text" placeholder='Username' required name="Username" onChange={(e) => setUsername(e.target.value)} />
                         <FaRegUserCircle className={logincss.icon} />
@@ -68,7 +106,7 @@ const LoginForm = () => {
                     <div className={logincss.rememberforgot}>
                         <a href='#'>Forgot password?</a>
                     </div>
-                    <button type="submit"><a href='/homepage' className={logincss.loginbutton}>Login</a></button>
+                    <button type="submit" onClick={handleSubmit}>Login</button>
                     <div className={logincss.registerlink}>
                         <p>Don't Have an account? <a href='/register'>Register</a></p>
                     </div>

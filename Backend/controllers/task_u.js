@@ -39,8 +39,7 @@ exports.Login = async (req,res)=>{
                 if(err)console.log(err);
                 if(result){
                     const token= jwt.sign({username:username},process.env.jwt_secret_key,{expiresIn:"30d"})
-                    res.cookie("token",token)
-                    res.status(200).json("Successsfully Login!")
+                    res.status(200).json({token:token})
                 }
                 else{
                 res.status(401).json("Password is wrong!")
