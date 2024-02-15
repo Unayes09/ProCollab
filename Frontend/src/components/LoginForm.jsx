@@ -55,7 +55,12 @@ const LoginForm = () => {
             <Navbar />
             <div className={logincss.wrapper}>
                 <form onSubmit={handleSubmit}>
-                    <h1>Login</h1>
+                        <h1>Login</h1>
+                        <div className={logincss.additionalText}>
+                            <p style={{ color: 'red', fontSize: '12px', marginTop:'40px' }}>
+                                Wrong username or password
+                            </p>
+                        </div>
                     <div className={logincss.inputbox}>
                         <input type="text" placeholder='Username' required name="Username" onChange={(e) => setUsername(e.target.value)} />
                         <FaRegUserCircle className={logincss.icon} />
