@@ -6,7 +6,7 @@ router.get('/token', authController.findToken)
 
 router.get('/projects',authController.allProjects)
 
-router.get('/verify',authController.verify)
+router.get('/verify/:token',authController.verify)
 
 router.get('/resource',authController.Resource)
 
