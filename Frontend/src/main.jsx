@@ -1,24 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-import './index.css';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'; // Correct import
-import Navbar from './components/Navbar.jsx';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Firstpage from './components/Firstpage.jsx';
 import LoginForm from './components/LoginForm.jsx';
-import RegisterForm from './components/RegisterForm';
-import ProfilePage from './components/ProfilePage';
+import RegisterForm from './components/RegisterForm.jsx';
+import Home from './components/Home.jsx';
 
-const router = createBrowserRouter([{
-  path: '/',
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element:<Firstpage/>
+  },
+  {
+    path: '/homepage',
+    element: <Home/>,
+},
+  {
+  path: '/signin',
   element: <LoginForm />,
   }, {
-  path: '/RegisterForm',
+    path: '/register',
     element:<RegisterForm/>,
-  }, 
-  {
-  path: '/ProfilePage',
-    element:<ProfilePage/>,
-  }, 
+  },
+  
 ]);
 
 ReactDOM.render(

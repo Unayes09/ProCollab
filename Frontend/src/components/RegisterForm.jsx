@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './RegisterForm.css'
+import registercss from './RegisterForm.module.css'
 
 // import { FaRegUserCircle } from "react-icons/fa";
 // import { FaLock } from "react-icons/fa";
@@ -98,28 +98,30 @@ const RegisterForm = () => {
         };
 
 
-        return (
-            <div className='wrapper'>
+    return (
+        <>
+            <div className={registercss.mainroot}>
+                <div className={registercss.wrapper}>
                 <form onSubmit={handleSubmit}>
                     <h1>Registeration Form</h1>
-                    <div className="input-box">
+                        <div className={registercss.inputbox}>
                         <input type="text" placeholder='Fullname' required name="Fullname" onChange={(e)=>setname(e.target.value)}/>
                         
                     </div>
-                    <div className="input-box">
+                        <div className={registercss.inputbox}>
                         <input type="text" placeholder='Username' required name="Username" onChange={(e)=>setUsername(e.target.value)}/>
                         
                     </div>
-                    <div className="input-box">
+                        <div className={registercss.inputbox}>
                         <input type="text" placeholder='Email' required name="Email" onChange={(e)=>setEmail(e.target.value)}/>
                         
                     </div>
 
-                    <div className="input-box">
+                        <div className={registercss.inputbox}>
                         <input type="password" placeholder='Password' required onChange={(e) => setPassword(e.target.value)} /> 
                     </div>
 
-                     <div className="input-box">
+                        <div className={registercss.inputbox}>
                         <input type="password" placeholder='Confirm Password' required onChange={(e) => setConfirmPassword(e.target.value)} /> 
                     </div>
 
@@ -141,12 +143,14 @@ const RegisterForm = () => {
                     
                     <button type="submit">Register</button>
 
-                    <div className="register-link">
-                        <p>Already Have an account? <a href='/'>Login</a></p>
+                        <div className={registercss.registerlink}>
+                        <p>Already Have an account? <a href='/signin'>Login</a></p>
                     </div>
                 </form>
            
             </div>
+            </div>
+        </>
         );
     }
 

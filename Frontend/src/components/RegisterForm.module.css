@@ -6,25 +6,25 @@
     box-sizing: border-box;
 }
 
-body {
-    margin: 0;
-    font-family: "Poppins", sans-serif;
+.mainroot {
     -webkit-font-smoothing: antialiased;
     -mox-osx-font-smoothing: grayscale;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: url(../assets/bg.jpg)no-repeat;
+    font-family: "Poppins", sans-serif;
+    background-image: url(../assets/bg.jpg);
+    margin: 0;
+    padding: 0;
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+        justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+    padding-left: 33%;
 }
-
-h1 {
-    font-size: 3.2em;
-    line-height: 1.1;
-}
-
 .wrapper {
     width: 500px;
     background: transparent;
@@ -41,7 +41,7 @@ h1 {
     text-align: center;
 }
 
-.wrapper .input-box {
+.wrapper .inputbox {
     position: relative;
     width: 100%;
     height: 50px;
@@ -50,7 +50,7 @@ h1 {
     margin: 30px 0;
 }
 
-.input-box input {
+.inputbox input {
     width: 100%;
     height: 100%;
     background: transparent;
@@ -64,12 +64,12 @@ h1 {
 
 }
 
-.input-box input::placeholder {
+.inputbox input::placeholder {
     color: #fff;
     border: 2px;
 }
 
-.input-box .icon {
+.inputbox .icon {
     position: absolute;
     right: 20px;
     top: 50%;
@@ -77,24 +77,24 @@ h1 {
     font-size: 16px;
 }
 
-.wrapper .remember-forgot {
+.wrapper .rememberforgot {
     display: flex;
     justify-content: center;
     font-size: 14.5px;
     margin: -15px 0 15px;
 }
 
-.remember-forgot label input {
+.rememberforgot label input {
     accent-color: #fff;
     margin-right: 4px;
 }
 
-.remember-forgot a {
+.rememberforgot a {
     color: #fff;
     text-decoration: none;
 }
 
-.remember-forgot a:hover {
+.rememberforgot a:hover {
     text-decoration: underline;
 }
 
@@ -112,19 +112,19 @@ h1 {
 
 }
 
-.wrapper .register-link {
+.wrapper .registerlink {
     font-size: 14.5px;
     text-align: center;
     margin: 20px 0 15px;
 }
 
-.register-link p a {
+.registerlink p a {
     color: #fff;
     text-decoration: none;
     font-weight: 600;
 }
 
-.register-link p a:hover {
+.registerlink p a:hover {
 
     text-decoration: underline;
 }

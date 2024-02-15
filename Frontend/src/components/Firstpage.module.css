@@ -1,0 +1,81 @@
+/*body {
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+*/
+.imagecontainer {
+    display: flex;
+    /* or use 'display: grid;' */
+    justify-content: center;
+    /* Center horizontally */
+    align-items: center;
+    /* Center vertically */
+    height: 250px;
+    /* Set a fixed height for the container */
+}
+
+.imagecontainer img {
+    max-width: 50%;
+    /* Ensure the image doesn't exceed its container */
+    max-height: 50%;
+    /* Ensure the image doesn't exceed its container */
+}
+
+.imagesqr {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    /* Adjust the height as needed */
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    /* Add margin between rows */
+}
+
+.column {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    margin: 0 20px;
+    /* Add margin between columns */
+}
+
+.column img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+    /* Ensure the image fills the container */
+}
+
+.mainroot {
+    -webkit-font-smoothing: antialiased;
+    -mox-osx-font-smoothing: grayscale;
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('/img-4.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100vh;
+}
+
+.copyright {
+    position: absolute;
+    bottom: 5px;
+    /* Adjust as needed */
+    left: 10px;
+    /* Adjust as needed */
+    color: white;
+    /* Adjust text color */
+}

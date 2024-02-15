@@ -1,0 +1,256 @@
+.mainroot{
+    background-color: rgb(255, 255, 255,0);
+
+}
+
+.maincontent {
+    background-image: url('/img-4.jpg');
+    height: 92vh;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 1fr 5fr 2fr;
+    /*grid-gap: 0.2em 0.2em;*/
+}
+
+.leftsection1{
+    grid-area: 1 / 1 / 4 / 2;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items:normal;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 15px;
+    padding-left: 10px;
+} 
+.leftsection2 {
+    grid-area: 3 / 1 / 4 / 2;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    flex-direction: column;
+}
+.rightsection1 {
+    grid-area: 1 / 2 / 2 / 3;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content:space-evenly;
+    flex-direction: row;
+}
+.rightsection2 {
+    grid-area: 2 / 2 / 5 / 3;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    grid-template-columns: 2fr 1fr;
+    flex-direction: column;
+    overflow-y: auto;
+    /* Add this line for vertical scrolling */
+    max-height: 600px;
+    /* Adjust the max-height as needed */
+}
+
+.searchContainer {
+    display: flex;
+    align-items: center;
+}
+
+
+.searchBar {
+    width: 800px;
+    height: 50px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+}
+
+.createButton {
+    padding: 10px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.createButton :hover{
+
+}
+.header{
+    top: 0;
+}
+.horizontalRow {
+    border-top: 2px solid #ccc;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+/* Home.module.css */
+
+.channelList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto;
+    max-height: calc(100vh - 90px);
+    max-height: 436px;
+        /* Adjust the max-height as needed */
+    overflow-y: auto;
+    /* Adjust max-height based on your layout */
+}
+
+.channelList li {
+    padding: 10px;
+    text-decoration: none;
+}
+.channelList li a{
+    text-decoration: none;
+}
+.channelList::-webkit-scrollbar {
+    width: 0.3em;
+    /* Adjust the width as needed */
+}
+
+.channelList::-webkit-scrollbar-thumb {
+    background-color:#4f4f4f;
+}
+/* Other styles as needed */
+
+.feedbackInput {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.submitButton {
+    width: 30%;
+    height: 20%;
+    padding: 10px;
+    background-color: #4caf50;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.feedbackTextarea {
+    width: 100%;
+    height: 120px;
+    /* Adjust the height as needed */
+    background-color: #b8bbbb;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+.menuButtonContainer {
+    position: relative;
+}
+
+.menuButton {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.dropdownMenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 120px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+.menuButtonContainer:hover .dropdownMenu {
+    display:inline-block;
+}
+
+.dropdownMenu p {
+    padding: 10px;
+    margin: 0;
+    cursor: pointer;
+}
+
+.dropdownMenu p:hover {
+    background-color: #f1f1f1;
+}
+/* Add these styles in your Home.module.css file or create a new CSS file */
+
+.projectCard {
+    display: flex;
+    margin-bottom: 4px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 100%;
+}
+    
+.textSection {
+    flex: 1;
+    padding-right: 20px;
+}
+
+.textSection h4 {
+    margin-bottom: 15px;
+}
+
+.textSection h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.textSection p {
+    margin-top: 10px;
+}
+
+.textSection button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.imageSection img {
+    width: 100%;
+    max-height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.see_more_button {
+    background-color: #28a745;
+    color: #fff;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.see_more_button:hover {
+    background-color: #218838;
+}
+.rightsection2::-webkit-scrollbar {
+    width: 12px;
+    /* Adjust as needed */
+}
+
+.rightsection2::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    /* Make scrollbar thumb transparent */
+}
+
+.rightsection2::-webkit-scrollbar-track {
+    background-color: transparent;
+    /* Make scrollbar track transparent */
+}
