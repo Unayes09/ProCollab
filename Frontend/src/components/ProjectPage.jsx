@@ -4,6 +4,12 @@ import Navbar from './Navbar';
 
 const ProjectPage = () => {
   const [photoIndex, setPhotoIndex] = useState(1);
+  const [userComment, setUserComment] = useState('');
+  
+
+
+  // Now you can use this array in your component where you render the list of comments.
+
 
   const handleLike = () => {
     // Logic for handling the like button click
@@ -50,10 +56,24 @@ const ProjectPage = () => {
         <div className={ProjectPageCss.buttons}>
           <button onClick={handleLike}>Like</button>
           <button onClick={handleDislike}>Dislike</button>
-          <button onClick={handleComment}>Comment</button>
-          {/* Add conditional rendering for the delete button */}
+            {/* Add conditional rendering for the delete button */}
+            
           {true && <button onClick={handleDelete}>Delete</button>}
         </div>
+          <div className={ProjectPageCss.commentSection}>
+            <textarea className={ProjectPageCss.comment_area }
+              placeholder="Write your comment..."
+              value={userComment}
+              onChange={(e) => setUserComment(e.target.value)}
+            />
+            <button
+              className={ProjectPageCss.commentButton}
+              onClick={handleComment}
+            >
+              Comment
+            </button>
+            
+          </div>  
       </div>
       <div className={ProjectPageCss.rightsection}>
         <div className={ProjectPageCss.photocontainer}>

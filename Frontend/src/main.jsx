@@ -10,6 +10,7 @@ import CreateProject from './components/CreateProject';
 import ProfilePage from './components/ProfilePage';
 import ProjectPage from './components/ProjectPage';
 
+
 const router = createBrowserRouter([
   {
     path: '/',

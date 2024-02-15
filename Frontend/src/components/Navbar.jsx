@@ -8,10 +8,12 @@ function Navbar() {
                     <span className={navbar.logo}></span>
                 </div>
                 <div className={navbar.navbarright}>
-                    <a href="/signin">Sign in</a>
-                    <a href="#about">About</a>
-                    <a href="/channels">Channels</a>
+
                     <a href="/profiles">Projects</a>
+                    <a href="/channels">Channels</a>
+                    <a href="#about">About</a>
+                    <a href="/signin">Sign in</a>
+                    
                 </div>
             </nav>
 
