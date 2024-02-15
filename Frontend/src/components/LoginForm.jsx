@@ -66,10 +66,15 @@ const LoginForm = () => {
 
             })
             .then(async response => {
-                const data =await response.json()
-                const token = data.token
-                localStorage.setItem('token',token)
-                routetohome()
+                const data = await response.json()
+                if (response.ok) {
+                    const token = data.token
+                    localStorage.setItem('token',token)
+                    routetohome()
+                }
+                else {
+                    setLoginError(true)
+                }
             })
         } catch (error) {
             console.error('Error submitting form:', error);

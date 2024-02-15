@@ -12,9 +12,10 @@ const LoginForm = () => {
 
     const navigate = useNavigate()
     const [EmailData, setEmail] = useState()
-    
+    const [loginError, setLoginError] = useState(false);
+    const [login2Error, setLogin2Error] = useState(false);
     function routetohome() {
-        navigate('/homepage')
+        navigate('/signin')
     }
     useEffect(() => {
         const checkLoggedIn = async () => {
@@ -63,7 +64,14 @@ const LoginForm = () => {
             })
             .then(response => {
                 const data = response.json()
-                routetohome()
+                if (response.ok) {
+                    setLoginError(true)
+                    routetohome()
+                }
+                else {
+                    setLogin2Error(true)
+                }
+                
             })
         } catch (error) {
             console.error('Error submitting form:', error);
@@ -78,6 +86,16 @@ const LoginForm = () => {
             <div className={forgetcss.wrapper}>
                 <form onSubmit={handleSubmit}>
                         <h1>Recover Password</h1>
+                        {loginError &&<div className={forgetcss.additionalText}>
+                            <p style={{ color: 'red', fontSize: '12px', marginTop:'40px' }}>
+                                Please check your email.
+                            </p>
+                        </div>}
+                        {login2Error &&<div className={forgetcss.additionalText}>
+                            <p style={{ color: 'red', fontSize: '12px', marginTop:'40px' }}>
+                                User not registered!
+                            </p>
+                        </div>}
                     <div className={forgetcss.inputbox}>
                         <input type="email" placeholder='Email' required name="email" onChange={(e) => setEmail(e.target.value)} />
                         
