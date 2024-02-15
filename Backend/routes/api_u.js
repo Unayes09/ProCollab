@@ -12,7 +12,7 @@ router.get('/resource',authController.Resource)
 
 router.get('/search',authController.Search)
 
-router.get('/username',authController.User)
+router.get('/username/:token',authController.User)
 
 router.get('/channels',authController.allChannels)
 
