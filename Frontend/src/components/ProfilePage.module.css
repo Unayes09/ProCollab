@@ -1,13 +1,10 @@
 
-body {
-    height: 100%;
-}
-
-body {
-    background: url(../assets/bg.jpg) no-repeat;
+.root{
+    margin-top: 3.5%;
+    background:url(../assets/bg.jpg);
     background-size: cover;
-    overflow: hidden;
-    
+    height: 100%;
+    background-repeat: repeat-y;
 }
 
 .container {

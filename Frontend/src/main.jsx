@@ -9,6 +9,7 @@ import ChatBox from './components/ChatBox.jsx';
 import CreateProject from './components/CreateProject';
 import ProfilePage from './components/ProfilePage';
 import ProjectPage from './components/ProjectPage';
+import ForgetPassword from './components/ForgetPassword';
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,11 @@ const router = createBrowserRouter([
     path: '/projectpage',
     element:<ProjectPage/>,
   },
+  {
+    path: '/forgetpassword',
+    element:<ForgetPassword/>,
+  },
+
   
 ]);
 

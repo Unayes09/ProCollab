@@ -8,7 +8,8 @@ const ProfilePage = () => {
 
     return (
         <>
-            <div className={Profilecss.Navbar}>  <Navbar/> </div> 
+            <div className={Profilecss.Navbar}>  <Navbar /> </div> 
+            <div className={Profilecss.root}>
         <div className={Profilecss.container}>
             <div className={Profilecss.NameAndShort}>
                 <h3>Name of Project</h3>
@@ -22,12 +23,8 @@ const ProfilePage = () => {
                 <img src={ Profile2} width={300} height={300}/>
             </div>
 
-
-
-
-
-
-            </div>
+                </div>
+                </div>
             </>
     );
 };
