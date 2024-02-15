@@ -159,10 +159,10 @@ exports.User = async(req,res)=>{
         else{
             const decodedToken = jwt.verify(token, process.env.jwt_secret_key)
             const username = decodedToken.username
-            res.status(200).json({ username })
+            res.status(200).json({ username:username })
         }
     } catch (error) {
-        res.status(401).json('Invalid JWT token')
+        res.status(404).json('Invalid JWT token')
     }
 }
 

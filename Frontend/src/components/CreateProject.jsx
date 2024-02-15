@@ -1,10 +1,66 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import {  AiOutlineCloseCircle } from 'react-icons/ai'; // Import add and remove icons from react-icons
 
 import CreateProjectCss from './CreateProject.module.css'; // Import your CSS file
 import Navbar from './Navbar';
+import { useNavigate } from 'react-router-dom';
 
 const CreateProject = () => {
+  let user;
+  const navigate = useNavigate()
+  function routetoproject(){
+    navigate('/homepage')
+  }
+  function routetohome(){
+    navigate('/login')
+}
+
+  useEffect(() => {
+    const checkUsername = async () => {
+        try {
+            const token = localStorage.getItem('token')
+            await fetch('http://localhost:8000/api/username/'+token, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+
+            })
+            .then(async response => {
+              const data = await response.json()
+              user = data.username
+              setProjectData({ ...projectData, project_holder: user })
+          })
+        } catch (error) {
+            console.error('Error checking login status:', error);
+        }
+    };
+
+    checkUsername();
+}, []);
+
+useEffect(() => {
+  const checkLoggedIn = async () => {
+      try {
+          const token = localStorage.getItem('token')
+          const response = await fetch('http://localhost:8000/api/verify/'+token, {
+              method: 'GET',
+              headers: {
+                  'Content-Type': 'application/json',
+              }
+
+          });
+          if (!response.ok) {
+              routetohome()
+          }
+      } catch (error) {
+          console.error('Error checking login status:', error);
+      }
+  };
+
+  checkLoggedIn();
+}, []);
+
   const [projectData, setProjectData] = useState({
     project_holder: '',
     title: '',
@@ -33,6 +89,7 @@ const CreateProject = () => {
     'Emerging Technologies',
   ];
 
+
   const handleTagChange = (selectedTag) => {
     if (!projectData.tags.includes(selectedTag)) {
       setProjectData({ ...projectData, tags: [...projectData.tags, selectedTag] });
@@ -43,19 +100,49 @@ const CreateProject = () => {
     setProjectData({ ...projectData, tags: projectData.tags.filter(tag => tag !== tagToRemove) });
   };
 
-  const handlePhotoChange = (e) => {
+  const handlePhotoChange = async (e) => {
     const selectedFiles = e.target.files;
 
-    if (selectedFiles) {
-      const fileArray = Array.from(selectedFiles).map(file => URL.createObjectURL(file));
-      setProjectData({ ...projectData, photos: [...projectData.photos, ...fileArray] });
+    if (selectedFiles && selectedFiles.length > 0) {
+        const fileArray = Array.from(selectedFiles);
+        const base64Array = [];
+        await Promise.all(fileArray.map(async (file) => {
+            const photos = new FormData();
+            photos.append("image", file);
+            const response = await fetch('https://api.imgbb.com/1/upload?key=fc85d77221544f26553516a9bfd4a285', {
+                method: "POST",
+                body: photos
+            });
+            const data = await response.json();
+            console.log(data.data.url);
+            base64Array.push(data.data.url);
+        }));
+        setProjectData({ ...projectData, photos: [...projectData.photos, ...base64Array] });
     }
-  };
+};
 
-  const handleSubmit = () => {
-    // Send projectData to the backend
+
+  const handleSubmit = async(e) => {
+    e.preventDefault();
+
+    try {
+        let jsonData = "";
+        await fetch('http://localhost:8000/auth/createProject', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(projectData)
+
+        })
+        .then(async response => {
+            const data =await response.json()
+            routetoproject()
+        })
+      } catch (error) {
+          console.error('Error submitting form:', error);
+    }
     console.log(JSON.stringify(projectData));
-    // Reset the form or redirect to another page
   };
 
   return (
@@ -111,6 +198,7 @@ const CreateProject = () => {
           <input
             type="file"
             accept="image/*"
+            name="image"
             multiple
             onChange={handlePhotoChange}
           />
