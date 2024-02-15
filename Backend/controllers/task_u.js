@@ -396,3 +396,24 @@ exports.deleteTalk = async(req,res)=>{
         res.status(500).json("Internal Server Error")
     }
 }
+
+exports.joinChannel = async (req,res)=>{
+    
+    const { id,username } = req.body
+
+    try {
+        const foundChannel = await ChannelModel.findById(id)
+        if (!foundChannel) {
+            res.status(404).json('Channel not found')
+        }
+        else{
+            foundChannel.join.push({ name: username })
+            const updatedChannel = await foundChannel.save()
+
+            res.status(200).json("User Joined")
+        }
+    } catch (error) {
+        console.error(error)
+        res.status(500).json('Server error')
+    }
+}

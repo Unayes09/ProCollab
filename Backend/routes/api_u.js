@@ -18,4 +18,8 @@ router.get('/channels',authController.allChannels)
 
 router.get('/user',authController.getUser)
 
+router.get('/channelSearch',authController.ChannelSearch)
+
+router.get('/userChannel',authController.userChannel)
+
 module.exports=router

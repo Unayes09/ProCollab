@@ -211,3 +211,34 @@ exports.getUser = async(req,res)=>{
         res.status(500).json({ error: "Internal Server Error" })
     }
 }
+
+exports.ChannelSearch = async(req,res)=>{
+    try {
+        const keyword = req.query.word
+
+        const channels = await ChannelModel.find({
+            $or: [
+                { title: { $regex: new RegExp(keyword, 'i') } },
+                { description: { $regex: new RegExp(keyword, 'i') } },
+                { tags: { $regex: new RegExp(keyword, 'i') } }
+            ]
+        });
+
+        res.status(200).json(channels)
+    } catch (error) {
+        console.error(error)
+        res.status(500).json('Internal Server Error')
+    }
+}
+
+exports.userChannel = async(req,res)=>{
+    const { username } = req.body
+
+    try {
+        const channels = await ChannelModel.find({ 'join.name': username })
+        res.status(200).json(channels)
+    } catch (error) {
+        console.error(error)
+        res.status(500).json('Server error')
+    }
+}

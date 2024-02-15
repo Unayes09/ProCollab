@@ -34,4 +34,6 @@ router.delete('/projects/:projectId/comments/:commentId',authController.deleteCo
 
 router.delete('/channels/:channelId/talks/:talkId',authController.deleteTalk)
 
+router.post('/join',authController.joinChannel)
+
 module.exports=router

@@ -9,6 +9,12 @@ const talkSchema = new mongoose.Schema({
     }
 })
 
+const joinSchema = new mongoose.Schema({
+    name: {
+        type: String
+    }
+})
+
 const channelSchema = new mongoose.Schema({
     channel_holder: {
         type: String
@@ -23,7 +29,8 @@ const channelSchema = new mongoose.Schema({
         type: [String],
         default: []
     },
-    talks: [talkSchema]
+    talks: [talkSchema],
+    join: [joinSchema]
 });
 
 const channel = mongoose.model('channel', channelSchema);
