@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+
+.wrapper {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 95vh;
+    padding-top: 1%;
+    max-height: calc(100vh - 30px);
+    overflow-y: scroll;
+}
+
+.leftsection {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    align-self: baseline;
+    padding-top: 2%;
+    max-height: 90%;
+    margin: 10px;
+    
+}
+.leftsection h1{
+    align-content: start;
+    padding-left: 10px;
+    
+}
+.leftsection p {
+    align-content: start;
+    padding: 10px;
+-webkit-font-smoothing: antialiased;
+    -mox-osx-font-smoothing: grayscale;
+    font-family: "Poppins", sans-serif;
+}
+
+.buttons {
+    display: flex;
+    justify-self: center;
+    margin-top: 20px;
+   
+    column-gap: 20px;
+    align-items: flex-start;
+    padding-bottom: 10%;
+    padding-left: 10%;
+
+}
+.buttons button{
+justify-content: space-between;
+background: transparent;
+width: 20%;
+height: 40px;
+border-radius: 10px;
+backdrop-filter: blur(10px);
+
+}
+.buttons button:hover{
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+.rightsection {
+    flex: 1;
+    overflow-y: scroll;
+    /* Make only the right section scrollable */
+    padding: 20px;
+    max-height: calc(100vh - 30px);
+}
+
+.photocontainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.photo {
+    margin-bottom: 20px;
+}
+
+.photo img {
+    width: 100%;
+    /* Ensure images fill the container width */
+    height: auto;
+    /* Maintain aspect ratio */
+}
+.photo p {
+    padding-left: 45%;
+    
+    /* Ensure images fill the container width */
+    height: auto;
+    /* Maintain aspect ratio */
+}
+/* Add more styling based on your preferences */

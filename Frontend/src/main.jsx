@@ -7,6 +7,8 @@ import RegisterForm from './components/RegisterForm.jsx';
 import Home from './components/Home.jsx';
 import ChatBox from './components/ChatBox.jsx';
 import CreateProject from './components/CreateProject';
+import ProfilePage from './components/ProfilePage';
+import ProjectPage from './components/ProjectPage';
 
 const router = createBrowserRouter([
   {
@@ -31,6 +33,14 @@ const router = createBrowserRouter([
   {
     path: '/createproject',
     element:<CreateProject/>,
+  },
+  {
+    path: '/profilepage',
+    element:<ProfilePage/>,
+  },
+  {
+    path: '/projectpage',
+    element:<ProjectPage/>,
   },
   
 ]);
