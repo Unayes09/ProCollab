@@ -92,8 +92,8 @@ exports.verify = async (req,res)=>{
     if(!token)res.status(401).json("The token was not available")
     else{
         jwt.verify(token,process.env.jwt_secret_key,(err,decoded)=>{
-            if(err){res.status(404).json("Token is wrong");console.log('mara')}
-            res.status(200).json("Allready logged in")
+            if(err){res.status(404).json("Token is wrong");}
+            else res.status(200).json("Allready logged in")
         })
     }
 }

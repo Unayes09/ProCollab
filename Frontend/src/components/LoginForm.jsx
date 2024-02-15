@@ -66,12 +66,7 @@ const LoginForm = () => {
 
             })
             .then(response => {
-                if (!response.ok) {
-                    setLoginError(true);
-                }
-                return response.json()
-            })
-            .then(data => {
+                const data = response.json()
                 const token = data.token
                 localStorage.setItem('token',token)
                 routetohome()
