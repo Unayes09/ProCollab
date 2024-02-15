@@ -5,6 +5,8 @@ import Firstpage from './components/Firstpage.jsx';
 import LoginForm from './components/LoginForm.jsx';
 import RegisterForm from './components/RegisterForm.jsx';
 import Home from './components/Home.jsx';
+import ChatBox from './components/ChatBox.jsx';
+import CreateProject from './components/CreateProject';
 
 const router = createBrowserRouter([
   {
@@ -21,6 +23,14 @@ const router = createBrowserRouter([
   }, {
     path: '/register',
     element:<RegisterForm/>,
+  },
+  {
+    path: '/chatbox',
+    element:<ChatBox/>,
+  },
+  {
+    path: '/createproject',
+    element:<CreateProject/>,
   },
   
 ]);

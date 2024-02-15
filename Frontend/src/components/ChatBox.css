@@ -1,0 +1,97 @@
+/* ChatBox.css */
+
+.app-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    
+    /* Prevent the whole page from scrolling */
+}
+
+.chat-box-container {
+    display: flex;
+    width: 100vw;
+    /* Take the whole width of the viewport */
+}
+
+.channels-section {
+    flex: 1;
+    border-right: 1px solid #ccc;
+    padding: 10px;
+    overflow-y: auto;
+    /* Enable scrolling */
+    max-height: calc(100vh - 20px);
+    /* Take the full height of the viewport minus some space */
+}
+
+.channel-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.channel {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.channel:hover {
+    background-color: #eee;
+}
+
+.channel.active {
+    background-color: #ddd;
+}
+
+.chat-section {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 20px);
+    /* Take the full height of the viewport minus some space */
+}
+
+.channel-name {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.chat-container {
+    flex: 1;
+    overflow-y: auto;
+    /* Enable scrolling */
+    padding: 10px;
+}
+
+.chat-message {
+    margin-bottom: 10px;
+}
+
+.message-input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #eee;
+}
+
+.message-input input {
+    flex: 1;
+    padding: 8px;
+    margin-right: 10px;
+}
+
+.message-input button {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.message-input button:hover {
+    background-color: #333333;
+}

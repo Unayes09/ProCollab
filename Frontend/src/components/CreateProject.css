@@ -1,0 +1,120 @@
+/* CreateProject.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    /* Adjusted to be below the top */
+   
+    font-family: "Poppins", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -mox-osx-font-smoothing: grayscale; justify-content: center;
+        align-items: center;
+        
+        background: url(../assets/bg.jpg);
+        background-size: cover;
+        background-repeat: repeat-y;
+       
+}
+
+.create-project-box {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #000;
+    border-radius: 10px;
+    width: 450px;
+    max-height: 70%;
+    background: transparent;
+    border: 2px solid rgba(255,255,255,.2);
+    backdrop-filter: blur(270px);
+    color:#fff;
+    border-radius: 10px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    
+}
+
+.input-group {
+    margin-bottom: 5px;
+    padding-right: 5px;
+    width: 370px;
+}
+.input-group textarea {
+    margin-bottom: 5px;
+    max-width: 370px;
+    
+}
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #000;
+    border-radius: 5px;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tag {
+    background-color: #000;
+    color: #fff;
+    padding: 5px 10px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    position: relative;
+}
+
+.remove-icon {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #fff;
+}
+
+.add-icon {
+    cursor: pointer;
+    font-size: 20px;
+    margin-left: 5px;
+    color: #000;
+}
+
+.photos {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.photo {
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.photo img {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.create-button {
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.create-button:hover {
+    background-color: #555;
+}
