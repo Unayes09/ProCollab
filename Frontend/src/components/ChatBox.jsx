@@ -11,6 +11,7 @@ const ChatBox = () => {
   
   const urlSearchParams = new URLSearchParams(window.location.search);
   const id = urlSearchParams.get('id');
+  let [user, setUser] = useState();
   const [channelData, setChannels] = useState(
 {
     title: '',
@@ -18,8 +19,55 @@ const ChatBox = () => {
     description: '',
     talks:[],
     });
+
+    useEffect(() => {
+      const checkLoggedIn = async () => {
+          try {
+              const token = localStorage.getItem('token')
+              const response = await fetch('http://localhost:8000/api/verify/'+token, {
+                  method: 'GET',
+                  headers: {
+                      'Content-Type': 'application/json',
+                  }
+  
+              });
+              if (response.ok) {
+                  routetohome()
+              }
+          } catch (error) {
+              console.error('Error checking login status:', error);
+          }
+      };
+  
+      checkLoggedIn();
+  }, []);
+  useEffect(() => {
+      const checkUsername = async () => {
+          try {
+              const token = localStorage.getItem('token')
+              await fetch('http://localhost:8000/api/username/'+token, {
+                  method: 'GET',
+                  headers: {
+                      'Content-Type': 'application/json',
+                  }
+  
+              })
+              .then(async response => {
+                const data = await response.json()
+                user = data.username
+                setUser(data.username)
+            })
+          } catch (error) {
+              console.error('Error checking login status:', error);
+          }
+      };
+  
+      checkUsername();
+  }, []);
   
    const [chatMessages, setChatMessages] = useState([]);
+   const [newMessage, setNewMessage] = useState('');
+   const [messageSent, setMessageSent] = useState(false);
 
   useEffect(() => {
         // Fetch projects from the server when the component mounts
@@ -36,17 +84,15 @@ const ChatBox = () => {
                 //setProjects(ress)
                 if (response.ok) {
                   const updateProjects = async () => {
-                    console.log(ress)
+                    
                     setChannels({ ...channelData, title: ress.title, description: ress.description,name: ress.channel_holder,talks: ress.talks  })
-                    console.log(channelData.title);
-                    //console.log(channelData.talks)
+                    
                     
                     }
                   await updateProjects();
                   const updatetalks = async () => {
                     setChatMessages(ress.talks)
-                   // console.log(channelData.title);
-                    //console.log(channelData.talks)
+                    setMessageSent(false)
                     
                     }
                     await updatetalks();
@@ -56,18 +102,43 @@ const ChatBox = () => {
           }
         }
         fetchChannels();
-    }, []);
-  //console.log(id)
- 
-
-  console.log(chatMessages)
-
-  const [newMessage, setNewMessage] = useState('');
+    }, [messageSent]);
 
   // Function to handle sending a new message
-  const handleSendMessage = () => {
-    
-    // datafetch to database by post api
+  const handleSendMessage =async (e) => {
+    e.preventDefault();
+
+        try {
+            const formData = {
+                channelId:id,
+                username: user,
+                talk:newMessage
+            }
+            let jsonData = "";
+            await fetch('http://localhost:8000/auth/talk', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+
+            })
+            .then(async response => {
+                const data = await response.json()
+                if (response.ok) {
+                  const updatetalks = async () => {
+                   
+                      setMessageSent(true)
+                    }
+                    await updatetalks();
+                }
+                else {
+                  
+                }
+            })
+        } catch (error) {
+            console.error('Error submitting form:', error);
+        }
 
   };
 
