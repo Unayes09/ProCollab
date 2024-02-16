@@ -212,8 +212,9 @@ function Home() {
                         <hr className={homecss.horizontalRow} />
                         <ul className={homecss.channelList}>
                             {channel.map((channel) => (
+                        
                                 <li key={channel._id}>
-                                    <a href="http://localhost:5173/channel">{channel.title}</a>
+                                <a href ={"http://localhost:5173/chatbox?id="+channel._id} >{channel.title}</a>
                                 </li>
                             ))}
                         </ul>

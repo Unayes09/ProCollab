@@ -9,34 +9,66 @@ import Navbar from './Navbar';
 const ChatBox = () => {
   // Dummy data for channels and chat messages
   
-
+  const urlSearchParams = new URLSearchParams(window.location.search);
+  const id = urlSearchParams.get('id');
+  const [channelData, setChannels] = useState(
+{
+    title: '',
+    name:'',
+    description: '',
+    talks:[],
+    });
   
+   const [chatMessages, setChatMessages] = useState([]);
 
-  const [chatMessages, setChatMessages] = useState(Array.from({ length: 30 }, (_, index) => ({
-    id: index + 1,
-    sender: `User ${(index % 2) + 1}`,
-    message: `Message ${index + 1}`,
-    timestamp: new Date().toISOString(),
-  })));
+  useEffect(() => {
+        // Fetch projects from the server when the component mounts
+        const fetchChannels = async () => {
+            try {
+                const response = await fetch('http://localhost:8000/api/channels?id='+id, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+    
+                });
+                const ress = await response.json()
+                //setProjects(ress)
+                if (response.ok) {
+                  const updateProjects = async () => {
+                    console.log(ress)
+                    setChannels({ ...channelData, title: ress.title, description: ress.description,name: ress.channel_holder,talks: ress.talks  })
+                    console.log(channelData.title);
+                    //console.log(channelData.talks)
+                    
+                    }
+                  await updateProjects();
+                  const updatetalks = async () => {
+                    setChatMessages(ress.talks)
+                   // console.log(channelData.title);
+                    //console.log(channelData.talks)
+                    
+                    }
+                    await updatetalks();
+                }
+            } catch (error) {
+                console.error('Error fetching projects:', error);
+          }
+        }
+        fetchChannels();
+    }, []);
+  //console.log(id)
+ 
+
+  console.log(chatMessages)
 
   const [newMessage, setNewMessage] = useState('');
 
   // Function to handle sending a new message
   const handleSendMessage = () => {
-    if (newMessage.trim() !== '') {
-      const newChatMessage = {
-        id: chatMessages.length + 1,
-        sender: 'User 1', // Change this to the actual sender (logged-in user)
-        message: newMessage,
-        timestamp: new Date().toISOString(),
-      };
+    
+    // datafetch to database by post api
 
-      // Update the state to include the new message
-      setChatMessages([...chatMessages, newChatMessage]);
-
-      // Clear the input field
-      setNewMessage('');
-    }
   };
 
   // Use useEffect to scroll the chat to the bottom when new messages are added
@@ -54,9 +86,9 @@ const ChatBox = () => {
       <div className={ChatBoxCss.appwrapper}>
         <div className={ChatBoxCss.chatboxcontainer}>
           <div className={ChatBoxCss.channelssection}>
-            <h2>Channel:</h2>
-            <p>channel name:  </p>
-            <p>channel description </p>
+            <h2>{channelData.title}</h2>
+            <p>@ {channelData.name}</p>
+            <p>{ channelData.description}</p>
             
         </div>
 
@@ -68,9 +100,9 @@ const ChatBox = () => {
             <div className={ChatBoxCss.chatcontainer} id="chat-container">
             {/* Map through chatMessages and display chat messages */}
             {chatMessages.map(message => (
-              <div key={message.id} className={ChatBoxCss.chatmessage}>
-                <p><strong>{message.sender}:</strong> {message.message}</p>
-                <span>{new Date(message.timestamp).toLocaleTimeString()}</span>
+              <div key={message._id} className={ChatBoxCss.chatmessage}>
+                <p><strong>{message.name}:</strong> {message.talk}</p>
+                
               </div>
             ))}
           </div>
