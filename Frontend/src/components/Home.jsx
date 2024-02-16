@@ -35,7 +35,7 @@ function Home() {
     const navigate = useNavigate()
     let [user, setUser] = useState();
     function routetohome(){
-        navigate('/homepage')
+        navigate('/signin')
     }
     useEffect(() => {
         const checkLoggedIn = async () => {
@@ -49,10 +49,10 @@ function Home() {
     
                 });
                 if (response.ok) {
-                    routetohome()
+                    
                 }
             } catch (error) {
-                console.error('Error checking login status:', error);
+                routetohome()
             }
         };
     

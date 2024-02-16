@@ -5,13 +5,17 @@ import { RiSendPlane2Line } from 'react-icons/ri'; // Import the send icon from 
 
 import ChatBoxCss from './ChatBox.module.css'; // Import your CSS file
 import Navbar from './Navbar';
+import { useNavigate } from 'react-router-dom';
 
 const ChatBox = () => {
   // Dummy data for channels and chat messages
-  
+  const navigate = useNavigate()
   const urlSearchParams = new URLSearchParams(window.location.search);
   const id = urlSearchParams.get('id');
   let [user, setUser] = useState();
+  function routetohome(){
+    navigate('/signin')
+  }
   const [channelData, setChannels] = useState(
 {
     title: '',
@@ -32,10 +36,10 @@ const ChatBox = () => {
   
               });
               if (response.ok) {
-                  routetohome()
+                  //routetohome()
               }
           } catch (error) {
-              console.error('Error checking login status:', error);
+              routetohome();
           }
       };
   
