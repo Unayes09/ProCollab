@@ -18,7 +18,7 @@ const ProjectCard = ({keys, owner, name, description, imageUrl, tags }) => {
                         <span key={index} className={homecss.tag}>{tag}</span>
                     ))}
                 </div>
-                <a href={"http://localhost://5173/project?id="+keys}><button className={homecss.see_more}>See More</button></a>
+                <a href={"http://localhost:5173/projectpage?id="+keys}><button className={homecss.see_more}>See More</button></a>
                 
             </div>
 
