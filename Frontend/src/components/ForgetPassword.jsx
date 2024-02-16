@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-const LoginForm = () => {
+const ForgetPassword = () => {
 
     const navigate = useNavigate()
     const [EmailData, setEmail] = useState()
@@ -66,6 +66,7 @@ const LoginForm = () => {
                 const data = response.json()
                 if (response.ok) {
                     setLoginError(true)
+                    console.log(response.status)
                     routetohome()
                 }
                 else {
@@ -110,4 +111,4 @@ const LoginForm = () => {
     );
 }
 
-export default LoginForm;
+export default ForgetPassword;
