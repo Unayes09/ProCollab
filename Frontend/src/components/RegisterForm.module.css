@@ -128,3 +128,77 @@
 
     text-decoration: underline;
 }
+
+
+.inputgroup {
+    margin-bottom: 2px;
+    padding-right: 2px;
+    width: 370px;
+}
+
+.inputgroup textarea {
+    margin-bottom: 5px;
+    max-width: 370px;
+
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #000;
+    border-radius: 5px;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tag {
+    background-color: #000;
+    color: #fff;
+    padding: 5px 10px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    position: relative;
+}
+
+.removeicon {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #fff;
+}
+
+.addicon {
+    cursor: pointer;
+    font-size: 20px;
+    margin-left: 5px;
+    color: #000;
+}
+
+
+
+.createbutton {
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.createbutton:hover {
+    background-color: #555;
+}

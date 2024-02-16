@@ -103,7 +103,7 @@ const LoginForm = () => {
                         <FaLock className={logincss.icon} />
                     </div>
                     <div className={logincss.rememberforgot}>
-                        <a href='#'>Forgot password?</a>
+                        <a href='/forgetpassword'>Forgot password?</a>
                     </div>
                     <button type="submit" onClick={handleSubmit}>Login</button>
                     <div className={logincss.registerlink}>
