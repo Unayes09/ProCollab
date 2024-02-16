@@ -245,7 +245,7 @@ exports.DisLike = async(req,res)=>{
 }
 
 exports.Feedback = async(req,res)=>{
-    const {email,description} = req.body
+    const {username,feedback} = req.body
     try {
         const transporter = await nodemailer.createTransport({
             service:'gmail',
@@ -255,17 +255,17 @@ exports.Feedback = async(req,res)=>{
             }
         })
         const info = await transporter.sendMail({
-            from: email, // sender address
+            from: username, // sender address
             to: "playonbdltd@gmail.com", // list of receivers
-            subject: "Feedback from "+email, // Subject line
+            subject: "Feedback from "+username, // Subject line
             text: "Feedback",
             html: `<div>
-                <p>`+description+`</p>
+                <p>`+feedback+`</p>
             </div>`
         })
-
         res.status(200).json("Send Feedback")
     } catch (error) {
+        console.log(error)
         res.status(400).json("Error find.")
     }
 }
