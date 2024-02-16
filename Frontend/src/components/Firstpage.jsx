@@ -1,13 +1,13 @@
 
 import logotext from '/logotext.png'
 import sqphoto from '/images.jpg'
-import Navbar from './Navbar'
+import Navbar1 from './Navbar1'
 import firstpagecss from './Firstpage.module.css'
 
 function Firstpage() {
     return (
         <div className={firstpagecss.mainroot}>
-            <Navbar z/>
+            <Navbar1 />
             <div className={firstpagecss.imagecontainer}>
                 <img src={logotext} className={firstpagecss.imagecontainer}></img>
             </div>
