@@ -6,7 +6,20 @@ const ProjectPage = () => {
   const [photoIndex, setPhotoIndex] = useState(1);
   const [userComment, setUserComment] = useState('');
   
+  const [comments, setComments] = useState(Array.from({ length: 50 }, (_, index) => ({
+    id: index + 1,
+    name: `User ${index + 1}`,
+    comment: `Comment for Project ${index + 1}. Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
+  })));
 
+  const CommentCard = ({ name, comment }) => (
+    <div className={ProjectPageCss.commentCard}>
+      <div className={ProjectPageCss.textSection}>
+        <h4>{name}</h4>
+        <p>{comment}</p>
+      </div>
+    </div>
+  );
 
   // Now you can use this array in your component where you render the list of comments.
 
@@ -72,7 +85,22 @@ const ProjectPage = () => {
             >
               Comment
             </button>
-            
+            <div className={ProjectPageCss.allComments}>
+              {comments.map((comment) => (
+                <CommentCard
+                  key={comment.id}
+                  name={comment.name}
+                  comment={comment.comment}
+                >
+                  <button
+                    className={ProjectPageCss.deleteButton}
+                    onClick={() => handleDelete(comment.id)}
+                  >
+                    Delete
+                  </button>
+                </CommentCard>
+              ))}
+            </div>
           </div>  
       </div>
       <div className={ProjectPageCss.rightsection}>
