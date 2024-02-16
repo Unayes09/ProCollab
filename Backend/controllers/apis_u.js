@@ -104,7 +104,7 @@ exports.Resource = async(req,res)=>{
     const user = req.query.user
     const userRes = await UserModel.findOne({ username:user });
     if (!userRes) {
-        res.status(404).json('User not found')
+        res.status(404).send('User not found.Please go to <a href="http://localhost:5173/signin">Link</a>')
     }
     const interests = userRes.interests;
     if(interests.length==0){
