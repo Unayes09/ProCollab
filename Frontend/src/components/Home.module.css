@@ -274,3 +274,16 @@
     background-color: transparent;
     /* Make scrollbar track transparent */
 }
+.tagsSection {
+    margin-top: 10px;
+}
+
+.tag {
+    display: inline-block;
+    background-color: #828282;
+    color: #fff;
+    padding: 5px 10px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+}

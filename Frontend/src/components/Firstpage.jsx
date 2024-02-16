@@ -7,7 +7,7 @@ import firstpagecss from './Firstpage.module.css'
 function Firstpage() {
     return (
         <div className={firstpagecss.mainroot}>
-            <Navbar />
+            <Navbar z/>
             <div className={firstpagecss.imagecontainer}>
                 <img src={logotext} className={firstpagecss.imagecontainer}></img>
             </div>

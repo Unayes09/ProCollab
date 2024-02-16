@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import homecss from './Home.module.css';
 import Navbar from './Navbar';
 import { useNavigate } from 'react-router-dom';
+const tags = ['Web Development', 'React', 'JavaScript', 'Frontend', 'UI/UX', 'Web Development', 'React', 'JavaScript', 'Frontend', 'UI/UX',
+    'Web Development', 'React', 'JavaScript', 'Frontend', 'UI/UX', 'Web Development', 'React', 'JavaScript', 'Frontend', 'UI/UX'];
 
 
 const ProjectCard = ({ owner, name, description, imageUrl }) => {
@@ -12,7 +14,13 @@ const ProjectCard = ({ owner, name, description, imageUrl }) => {
                 <h4>{owner}</h4>
                 <h1>{name}</h1>
                 <p>{description}</p>
+                <div className={homecss.tagsSection}>
+                    {tags && tags.map((tag, index) => (
+                        <span key={index} className={homecss.tag}>{tag}</span>
+                    ))}
+                </div>
                 <button className={homecss.see_more}>See More</button>
+                
             </div>
 
             {/* Right Section */}
@@ -233,7 +241,6 @@ function Home() {
                                 className={homecss.searchBar}
                             />
                         </div>
-                        <button className={homecss.searchButton}>Search</button>
                         <button className={homecss.createButton}><a href='/createproject' className={homecss.createButton}>Create</a></button>
                         
                     </div>
