@@ -80,7 +80,49 @@ function Home() {
     const [search, setSearch] = useState();
     
     useEffect(() => {
+        const fetchProjects = async () => { 
+        try {
+            let response;
+            if(search==""){
+                response = await fetch('http://localhost:8000/api/projects', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+
+                });
+            }
+            else{
+                response = await fetch('http://localhost:8000/api/search?word='+search, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+
+                });
+            }
+            const ress = await response.json()
+            //setProjects(ress)
+            if (response.ok) {
+                const updateProjects = async () => {
+                    setProjects(ress)
+                    //console.log(ress)
+                }
+                await updateProjects();
+            }
+        } catch (error) {
+            console.error('Error fetching projects:', error);
+        }
+    };
+    fetchProjects();
+        
+    }, [search]);
+    
+    useEffect(() => {
         // Fetch projects from the server when the component mounts
+
+        
+
         const fetchProjects = async () => {
             try {
                 const response = await fetch('http://localhost:8000/api/projects', {
@@ -137,44 +179,6 @@ function Home() {
         console.log('Form data changed:', FeedBackData);
     }, [FeedBackData]);
 
-    useEffect(() => {
-        const fetchProjects = async () => { 
-        try {
-            let response;
-            if(search==""){
-                response = await fetch('http://localhost:8000/api/projects', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    }
-
-                });
-            }
-            else{
-                response = await fetch('http://localhost:8000/api/search?word='+search, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    }
-
-                });
-            }
-            const ress = await response.json()
-            //setProjects(ress)
-            if (response.ok) {
-                const updateProjects = async () => {
-                    setProjects(ress)
-                    console.log(ress)
-                }
-                await updateProjects();
-            }
-        } catch (error) {
-            console.error('Error fetching projects:', error);
-        }
-    };
-    fetchProjects();
-        
-    }, [search]);
 
     const handleFeedBack = async (e) => {
         e.preventDefault();

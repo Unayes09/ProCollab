@@ -53,6 +53,7 @@ exports.findToken = async (req, res) => {
         <body>
             <div class="container">
                 <h1>Account Created Successfully</h1>
+                <a href="http://localhost:5173/signin">Login</a>
                 <!-- You can add more content or customize the design here -->
             </div>
         </body>
