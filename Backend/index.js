@@ -4,7 +4,6 @@ const cors = require('cors')
 const dotenv = require('dotenv')
 const path = require('path')
 const cookieParser = require('cookie-parser')
-const session = require('express-session');
 
 const app = express()
 app.use(cors())

@@ -11,7 +11,7 @@ function Navbar() {
 
                     <a href="/profiles">Projects</a>
                     <a href="/channels">Channels</a>
-                    <a href="#about">About</a>
+                    <a href="/about">About</a>
                     <a href="/signin">Sign in</a>
                     
                 </div>

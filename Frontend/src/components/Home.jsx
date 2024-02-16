@@ -1,19 +1,8 @@
+import React, { useState, useEffect } from 'react';
 import homecss from './Home.module.css';
 import Navbar from './Navbar';
+import { useNavigate } from 'react-router-dom';
 
-const channels = Array.from({ length: 500 }, (_, index) => ({
-    id: index + 1,
-    name: `Channel ${index + 1}`,
-    link: `/channel${index + 1}`,
-}));
-
-const projectList = Array.from({ length: 300 }, (_, index) => ({
-    id: index + 1,
-    owner: `Owner ${index + 1}`,
-    name: `Project ${index + 1}`,
-    description: `Description for Project ${index + 1}. Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
-    imageUrl: '/images.jpg', // Replace with your image URL
-}));
 
 const ProjectCard = ({ owner, name, description, imageUrl }) => {
     return (
@@ -35,6 +24,180 @@ const ProjectCard = ({ owner, name, description, imageUrl }) => {
 };
 
 function Home() {
+    const navigate = useNavigate()
+    let [user, setUser] = useState();
+    function routetohome(){
+        navigate('/homepage')
+    }
+    useEffect(() => {
+        const checkLoggedIn = async () => {
+            try {
+                const token = localStorage.getItem('token')
+                const response = await fetch('http://localhost:8000/api/verify/'+token, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+    
+                });
+                if (response.ok) {
+                    routetohome()
+                }
+            } catch (error) {
+                console.error('Error checking login status:', error);
+            }
+        };
+    
+        checkLoggedIn();
+    }, []);
+    useEffect(() => {
+        const checkUsername = async () => {
+            try {
+                const token = localStorage.getItem('token')
+                await fetch('http://localhost:8000/api/username/'+token, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+    
+                })
+                .then(async response => {
+                  const data = await response.json()
+                  user = data.username
+                  setUser(data.username)
+              })
+            } catch (error) {
+                console.error('Error checking login status:', error);
+            }
+        };
+    
+        checkUsername();
+    }, []);
+    
+    const [projects, setProjects] = useState([]);
+    const [channel, setChannels] = useState([]);
+    const [FeedBackData, setFeedBack] = useState();
+    const [search, setSearch] = useState();
+    
+    useEffect(() => {
+        // Fetch projects from the server when the component mounts
+        const fetchProjects = async () => {
+            try {
+                const response = await fetch('http://localhost:8000/api/projects', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+    
+                });
+                const ress = await response.json()
+                //setProjects(ress)
+                if (response.ok) {
+                    const updateProjects = async () => {
+                        setProjects(ress)
+                        //console.log(projects)
+                    }
+                    await updateProjects();
+                }
+            } catch (error) {
+                console.error('Error fetching projects:', error);
+            }
+        };
+        //console.log(projects[0]);
+        fetchProjects();
+    }, []);
+
+    useEffect(() => {
+        // Fetch projects from the server when the component mounts
+        const fetchChannels = async () => {
+            try {
+                const response = await fetch('http://localhost:8000/api/channels', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+    
+                });
+                const ress = await response.json()
+                //setProjects(ress)
+                if (response.ok) {
+                    const updateProjects = async () => {
+                        setChannels(ress)
+                    }
+                    await updateProjects();
+                }
+            } catch (error) {
+                console.error('Error fetching projects:', error);
+            }
+        }
+        fetchChannels();
+    }, []);
+
+    useEffect(() => {
+        console.log('Form data changed:', FeedBackData);
+    }, [FeedBackData]);
+
+    useEffect(() => {
+        const fetchProjects = async () => { 
+        try {
+            let response;
+            if(search==""){
+                response = await fetch('http://localhost:8000/api/projects', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+
+                });
+            }
+            else{
+                response = await fetch('http://localhost:8000/api/search?word='+search, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+
+                });
+            }
+            const ress = await response.json()
+            //setProjects(ress)
+            if (response.ok) {
+                const updateProjects = async () => {
+                    setProjects(ress)
+                    console.log(ress)
+                }
+                await updateProjects();
+            }
+        } catch (error) {
+            console.error('Error fetching projects:', error);
+        }
+    };
+    fetchProjects();
+        
+    }, [search]);
+
+    const handleFeedBack = async (e) => {
+        e.preventDefault();
+
+        try {
+            const formData = {
+                username: user,
+                feedback: FeedBackData
+            }
+            let jsonData = "";
+            await fetch('http://localhost:8000/auth/feedback', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+
+            })
+        } catch (error) {
+            console.error('Error submitting form:', error);
+        }
+    };
+
     return (
         <>
             <div className={homecss.mainroot}>
@@ -44,9 +207,9 @@ function Home() {
                         <h2 className={homecss.header}>My Channels</h2>
                         <hr className={homecss.horizontalRow} />
                         <ul className={homecss.channelList}>
-                            {channels.map((channel) => (
-                                <li key={channel.id}>
-                                    <a href={channel.link}>{channel.name}</a>
+                            {channel.map((channel) => (
+                                <li key={channel._id}>
+                                    <a href="http://localhost:5173/channel">{channel.title}</a>
                                 </li>
                             ))}
                         </ul>
@@ -55,9 +218,10 @@ function Home() {
                         <textarea
                             placeholder="Enter your feedback"
                             className={homecss.feedbackTextarea}
+                            required onChange={(e) => setFeedBack(e.target.value)}
                         ></textarea>
                         {/* Submit button with adjusted width */}
-                        <button className={homecss.submitButton}>Submit</button>
+                        <button className={homecss.submitButton} onClick={handleFeedBack}>Submit</button>
                     </div>
                     <div className={homecss.rightsection1}>
                         {/* Search Bar with Search Icon */}
@@ -65,6 +229,7 @@ function Home() {
                             <input
                                 type="text"
                                 placeholder="Search..."
+                                onChange={(e) => setSearch(e.target.value)}
                                 className={homecss.searchBar}
                             />
                         </div>
@@ -74,13 +239,13 @@ function Home() {
                     </div>
                     <div className={homecss.rightsection2}>
                         {/* List of Cards */}
-                        {projectList.map((project) => (
+                        {projects.map((project) => (
                             <ProjectCard
-                                key={project.id}
-                                owner={project.owner}
-                                name={project.name}
-                                description={project.description}
-                                imageUrl={project.imageUrl}
+                                key={project._id}
+                                owner={project.project_holder}
+                                name={project.title}
+                                description={project.subject}
+                                imageUrl={project.photos[0]}
                             />
                         ))}
                     </div>
