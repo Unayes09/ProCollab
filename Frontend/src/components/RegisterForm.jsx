@@ -25,7 +25,10 @@ const RegisterForm = () => {
     
         });
     
-    
+    const [registerdone, setregisterdone] = useState(false);
+    const [registerfail1, setregisterfil1] = useState(false);
+    const [registerfail2, setregisterfail2] = useState(false);
+
     const tagOptions = [
     'Programming Languages',
     'Web Development',
@@ -71,6 +74,15 @@ const RegisterForm = () => {
         })
         .then(async response => {
             const data = await response.json()
+            if (response.ok) {
+                setregisterdone(true)
+            }
+            else if (response.status === 400){
+                setregisterfil1(true)
+            }
+            else if (response.status === 401) {
+                setregisterfail2(true)
+            }
             console.log(data)
            
         })
@@ -130,7 +142,24 @@ const RegisterForm = () => {
         </div>
 
                     
-                    <button type="submit" onClick={handleSubmit}>Register</button>
+                        <button type="submit" onClick={handleSubmit}>Register</button>
+                        
+                        {registerdone &&<div className={registercss.additionalText}>
+                            <p style={{ color: 'red', fontSize: '12px', marginTop:'40px' }}>
+                                Please check your email.
+                            </p>
+                        </div>}
+                        {registerfail1 &&<div className={registercss.additionalText}>
+                            <p style={{ color: 'red', fontSize: '12px', marginTop:'40px' }}>
+                                Email or username already registered!
+                            </p>
+                        </div>}
+                        {registerfail2 &&<div className={registercss.additionalText}>
+                            <p style={{ color: 'red', fontSize: '12px', marginTop:'40px' }}>
+                               Username should be a single word!
+                            </p>
+                        </div>}
+
 
                         <div className={registercss.registerlink}>
                         <p>Already Have an account? <a href='/signin'>Login</a></p>
