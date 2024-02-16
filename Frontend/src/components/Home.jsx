@@ -233,6 +233,7 @@ function Home() {
                             <input
                                 type="text"
                                 placeholder="Search..."
+                                value="project"
                                 onChange={(e) => setSearch(e.target.value)}
                                 className={homecss.searchBar}
                             />
