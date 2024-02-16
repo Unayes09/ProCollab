@@ -11,10 +11,10 @@ function Navbar() {
                 <div className={navbar.navbarright}>
 
 
-                    <a href="/instraction">Instraction</a>
+                    <a href="/homepage">Profile</a>
+                    <a href="/resources">Resources</a>
                     <a href="/channels">Channels</a>
-                    <a href="/about">About</a>
-                    <a href="/signin">Sign in</a>
+                    <a href="/Project">Projects</a>
 
                 </div>
             </nav>
