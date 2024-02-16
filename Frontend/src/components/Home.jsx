@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react';
 import homecss from './Home.module.css';
 import Navbar from './Navbar';
 import { useNavigate } from 'react-router-dom';
-const tags = ['Web Development', 'React', 'JavaScript', 'Frontend', 'UI/UX', 'Web Development', 'React', 'JavaScript', 'Frontend', 'UI/UX',
-    'Web Development', 'React', 'JavaScript', 'Frontend', 'UI/UX', 'Web Development', 'React', 'JavaScript', 'Frontend', 'UI/UX'];
 
 
-const ProjectCard = ({ owner, name, description, imageUrl }) => {
+const ProjectCard = ({keys, owner, name, description, imageUrl, tags }) => {
+    //console.log(key+owner+name+description)
     return (
         <div className={homecss.projectCard}>
             {/* Left Section */}
@@ -19,7 +18,7 @@ const ProjectCard = ({ owner, name, description, imageUrl }) => {
                         <span key={index} className={homecss.tag}>{tag}</span>
                     ))}
                 </div>
-                <button className={homecss.see_more}>See More</button>
+                <a href={"http://localhost:5173/projectpage?id="+keys}><button className={homecss.see_more}>See More</button></a>
                 
             </div>
 
@@ -87,6 +86,7 @@ function Home() {
     const [FeedBackData, setFeedBack] = useState();
     const [search, setSearch] = useState();
     
+    
     useEffect(() => {
         const fetchProjects = async () => { 
         try {
@@ -114,9 +114,10 @@ function Home() {
             if (response.ok) {
                 const updateProjects = async () => {
                     setProjects(ress)
-                    //console.log(ress)
+                    console.log(ress)
                 }
                 await updateProjects();
+                
             }
         } catch (error) {
             console.error('Error fetching projects:', error);
@@ -128,8 +129,6 @@ function Home() {
     
     useEffect(() => {
         // Fetch projects from the server when the component mounts
-
-        
 
         const fetchProjects = async () => {
             try {
@@ -145,7 +144,6 @@ function Home() {
                 if (response.ok) {
                     const updateProjects = async () => {
                         setProjects(ress)
-                        //console.log(projects)
                     }
                     await updateProjects();
                 }
@@ -255,10 +253,12 @@ function Home() {
                         {projects.map((project) => (
                             <ProjectCard
                                 key={project._id}
+                                keys={project._id}
                                 owner={project.project_holder}
                                 name={project.title}
                                 description={project.subject}
                                 imageUrl={project.photos[0]}
+                                tags = {project.tags}
                             />
                         ))}
                     </div>

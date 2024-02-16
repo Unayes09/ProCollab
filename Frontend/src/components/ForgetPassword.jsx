@@ -67,7 +67,6 @@ const ForgetPassword = () => {
                 if (response.ok) {
                     setLoginError(true)
                     console.log(response.status)
-                    routetohome()
                 }
                 else {
                     setLogin2Error(true)
