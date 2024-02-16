@@ -63,7 +63,7 @@ exports.Register = async (req,res)=>{
     UserModel.findOne(query)
     .then(async user=>{
         if(user){
-            res.status(401).json("Email or Username already registered")
+            res.status(400).json("Email or Username already registered")
         }
         else{
             const wordPattern = /^[^\s]+$/;
@@ -99,7 +99,7 @@ exports.Register = async (req,res)=>{
         }
         
     })
-    .catch(err => res.status(401).json("Some problem occurred"));
+    .catch(err => res.status(404).json("Some problem occurred"));
 }
 
 exports.ForgetPassword = async(req,res)=>{
