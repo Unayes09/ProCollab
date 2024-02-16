@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import logincss from './LoginForm.module.css'
 import { FaRegUserCircle } from "react-icons/fa";
 import { FaLock } from "react-icons/fa";
-import Navbar from './Navbar.jsx';
+import Navbar1 from './Navbar1.jsx';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -84,7 +84,7 @@ const LoginForm = () => {
     return (
         <>
             <div className={logincss.mainroot}>
-            <Navbar />
+            <Navbar1 />
             <div className={logincss.wrapper}>
                 <form onSubmit={handleSubmit}>
                         <h1>Login</h1>
