@@ -11,6 +11,8 @@ import ProfilePage from './components/ProfilePage';
 import ProjectPage from './components/ProjectPage';
 import ForgetPassword from './components/ForgetPassword';
 import Allchannels from './components/Allchannels.jsx';
+import ChangePassword from './components/ChangePassword';
+import CreateChannel from './components/CreateChannel';
 
 
 const router = createBrowserRouter([
@@ -50,8 +52,17 @@ const router = createBrowserRouter([
     element:<ForgetPassword/>,
   }, {
     path: '/Allchannels',
-    element:<Allchannels/>
+    element:<Allchannels/>,
   }
+  ,
+  {
+    path: '/changepassword',
+    element:<ChangePassword/>,
+  },
+  {
+    path: '/createchannel',
+    element:<CreateChannel/>,
+  },
 
   
 ]);

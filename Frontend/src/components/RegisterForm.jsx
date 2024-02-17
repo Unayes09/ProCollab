@@ -13,7 +13,29 @@ const RegisterForm = () => {
   }
   function routetohome(){
     navigate('/login')
-}
+    }
+    useEffect(() => {
+        const checkLoggedIn = async () => {
+            try {
+                const token = localStorage.getItem('token')
+                console.log(token)
+                const response = await fetch('http://localhost:8000/api/verify/'+token, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+
+                });
+                if (response.ok) {
+                    routetohome()
+                }
+            } catch (error) {
+                console.error('Error checking login status:', error);
+            }
+        };
+
+        checkLoggedIn();
+    }, []);
 
     const [RegisterData, setRegisterData] = useState({
    
