@@ -1,25 +1,201 @@
 .profilesection{
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 2.5fr;
     grid-template-rows: 1fr 1fr;
     height: 92vh;
     width: 100%;
     display: grid;
 }
+.mainroot{
+    background-image: url('../assets/bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.rightsection::-webkit-scrollbar {
+    width: 12px;
+    /* Adjust as needed */
+}
+
+.rightsection::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    /* Make scrollbar thumb transparent */
+}
+
+.rightsection::-webkit-scrollbar-track {
+    background-color: transparent;
+    /* Make scrollbar track transparent */
+}
 .leftsection{
     grid-area: 1/1/3/2;
-    background-color: aqua;
     flex-direction: column;
+    display: flex;
+    padding: 50px;
+    justify-content: center;
+}
+
+
+.horizontalRow {
+    border-top: 2px solid #818181;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.normaltext{
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.tagList {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tag {
+    margin-top: 10px;
+    display: inline-block;
+    background-color: #319bed;
+    color: #fff;
+    margin-right: 5px;
+    padding: 5px 10px;
+}
+.interest{
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+}
+.fullname{
+    margin-bottom: 10px;
+}
+.accountinfo{
+    background-color: #FFFFE4;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.accountinfo:hover {
+    transform: scale(1.02);
+    /* Adjust the scale factor as needed for zoom effect */
+    box-shadow: 0px 0px 10px 0px #999999;
+    /* Add shadow on hover, adjust as needed */
+}
+.forgetpassword,
+.signout {
+    margin-top: 10px;
+    height: 30px;
+    /* Adjust the height as needed */
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 80px;
+    border: 1px solid #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.forgetpassword:hover,
+.signout:hover {
+    transform: scale(1.02);
+    /* Adjust the scale factor as needed for zoom effect */
+    box-shadow: 0px 0px 10px 0px #999999;
+    /* Add shadow on hover, adjust as needed */
+}
+
+.icon {
+    margin-right: 8px;
+}
+.projectCard {
+    display: flex;
+    margin-bottom: 4px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 48%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 10px;
+    background-color: #FFFFE4;
+    margin-right: 10px;
 
 }
-.rightsection1{
-    grid-area: 1/2/2/3;
-    background-color: blue;
+
+.projectCard:hover {
+    transform: scale(1.01);
+    /* Adjust the scale factor as needed for zoom effect */
+    box-shadow: 0px 0px 10px 0px #999999;
+    /* Add shadow on hover, adjust as needed */
 }
-.rightsection2{
-    grid-area: 2/2/3/3;
-    background-color: blueviolet;
+
+.textSection {
+    flex: 1;
+    padding-right: 20px;
+}
+
+.textSection h4 {
+    margin-bottom: 15px;
+}
+
+.textSection h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.textSection p {
+    margin-top: 10px;
+}
+
+.textSection button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.imageSection img {
+    width: 100%;
+    max-height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.see_more {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.see_more:hover {
+    background-color: #218838;
+}
+
+.tagsSection {
+    margin-top: 5px;
+}
+
+.tag {
+    display:inline-block;
+    background-color: #9a9a9a;
+    color: #fff;
+    font-size: small;
+    padding: 3px 5px;
+    margin-right: 3px;
+    border-radius: 5px;
+}
+.rightsection {
+    grid-area: 1/2/3/3;
+    max-height: 100%;
+    overflow-y: scroll;
+}
+
+.myprojects {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+    justify-content: left;
+    margin-right: 10px;
 }
