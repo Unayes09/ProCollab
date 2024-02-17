@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
 /*body {
     margin: 0;
     padding: 0;
@@ -7,6 +9,18 @@
     background-attachment: fixed;
 }
 */
+
+.logotext {
+    font-size: 100px;
+    color: #fff;
+    font-family: "Poppins", sans-serif;
+    font-style: italic;
+    letter-spacing: 2px;
+
+}
+.logotextpart{
+    height: 100px;
+}
 .imagecontainer {
     display: flex;
     /* or use 'display: grid;' */
@@ -27,34 +41,41 @@
 
 .imagesqr {
     display: grid;
-    justify-content: center;
-    align-items: center;
-    height: 80px;
-    /* Adjust the height as needed */
+    grid-template-columns: 3.5fr 3fr 3fr 2fr;
+    grid-row: 1fr 2fr;
+    max-height: 100px;
+    
 }
 
-.row {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-    /* Add margin between rows */
+.img1 {
+    grid-area: 1/2/2/3;
+    max-width: 60%;
+    max-height: 80%;
+}
+.img2 {
+    grid-area: 1/3/2/4;
+    max-width: 60%;
+    max-height: 80%;
+}
+.img3 {
+    grid-area: 2/2/3/3;
+    max-width: 60%;
+    max-height: 80%;
+}
+.img4 {
+    grid-area: 2/3/3/4;
+    max-width: 60%;max-height: 80%;
 }
 
-.column {
-    display: flex;
-    justify-content: center;
-    flex: 1;
-    margin: 0 20px;
-    /* Add margin between columns */
-}
-
-.column img {
+img {
     max-width: 100%;
     max-height: 100%;
-    border-radius: 10px;
-    object-fit: cover;
-    /* Ensure the image fills the container */
+    border-radius: 5px;
 }
+
+
+
+
 
 .mainroot {
     -webkit-font-smoothing: antialiased;
@@ -62,7 +83,7 @@
     font-family: "Poppins", sans-serif;
     margin: 0;
     padding: 0;
-    background-image: url('/img-4.jpg');
+    background-image: url('/Intro_bg1.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

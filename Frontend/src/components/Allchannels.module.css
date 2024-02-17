@@ -1,0 +1,155 @@
+/* Allchannels.module.css */
+.row1 {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+
+.searchContainer {
+    display: flex;
+    align-items: center;
+}
+
+.searchBar {
+    display: flex;
+    align-items: center;
+    width: 50%;
+    margin: 0 auto;
+    height: 50px;
+    border-radius: 20px;
+}
+
+.createButton {
+    padding: 10px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-bottom: 10px;
+        margin-right: 16px;
+        text-decoration: none;
+        height: 40px;
+}
+.createButton:hover {
+    background-color: #3e723f;
+    /* Change to your desired background color on hover */
+}
+/* Allchannels.module.css */
+.row2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.channelCard {
+    width: 60%;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin: 10px;
+    padding: 16px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.channelCard:hover {
+    transform: scale(1.02);
+    /* Adjust the scale factor as needed for zoom effect */
+    box-shadow: 0px 0px 10px 0px #999999;
+    /* Add shadow on hover, adjust as needed */
+}
+
+.channelName {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.channelDescription {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.tagList {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tag {
+    display: inline-block;
+    background-color: #828282;
+    color: #fff;
+    padding: 5px 10px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+}
+
+.joinButton {
+    background-color: #4caf50;
+    /* Green background color for the button */
+    color: white;
+    /* White text color */
+    padding: 10px 15px;
+    /* Adjust padding as needed */
+    border: none;
+    /* Remove border */
+    border-radius: 5px;
+    /* Add border-radius for rounded corners */
+    cursor: pointer;
+    /* Add pointer cursor on hover */
+    display: flex;
+    align-items: center;
+    /* Center icon vertically */
+}
+.joinButton:hover {
+    background-color: #3e723f;
+    /* Change to your desired background color on hover */
+}
+.topsection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+}
+.bottomsection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+}
+.channelName {
+    font-size: 1.2rem;
+    /* Adjust font size as needed */
+    font-weight: bold;
+}
+
+.joinedCount {
+    font-size: 1rem;
+    /* Adjust font size as needed */
+    color: #555;
+    /* Add color for better visibility */
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    margin-left: 5px;
+    margin-bottom: 4px;
+    /* Adjust margin as needed */
+}
+.row2::-webkit-scrollbar {
+    width: 12px;
+    /* Adjust as needed */
+}
+
+.row2::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    /* Make scrollbar thumb transparent */
+}
+
+.row2::-webkit-scrollbar-track {
+    background-color: transparent;
+    /* Make scrollbar track transparent */
+}
