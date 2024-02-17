@@ -243,3 +243,21 @@ exports.userChannel = async(req,res)=>{
         res.status(500).json('Server error')
     }
 }
+
+exports.isJoin = async(req,res)=>{
+    const {channelId,userName} = req.body
+
+    try {
+        const channel = await ChannelModel.findById(channelId);
+        if (!channel) {
+            res.status(404).json({ message: 'Channel not found' });
+        }
+        else{
+            const userJoined = channel.join.some(join => join.name === userName);
+            res.status(200).json({ isJoin: userJoined });
+        }
+    } catch (error) {
+        console.error('Error checking user join status:', error);
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+}

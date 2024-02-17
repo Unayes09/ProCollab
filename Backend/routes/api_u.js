@@ -22,4 +22,6 @@ router.get('/channelSearch',authController.ChannelSearch)
 
 router.get('/userChannel',authController.userChannel)
 
+router.get('/isJoin',authController.isJoin)
+
 module.exports=router

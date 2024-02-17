@@ -91,6 +91,7 @@ function Home() {
     
     
     useEffect(() => {
+        if(!user)return;
         const fetchProjects = async () => { 
         try {
             let response;
@@ -128,11 +129,10 @@ function Home() {
     };
     fetchProjects();
         
-    }, [search]);
+    }, [search,user]);
     
     useEffect(() => {
-        // Fetch projects from the server when the component mounts
-
+        
         const fetchProjects = async () => {
             try {
                 const response = await fetch('http://localhost:8000/api/projects', {
@@ -156,7 +156,7 @@ function Home() {
         };
         //console.log(projects[0]);
         fetchProjects();
-    }, []);
+    }, [user]);
 
     useEffect(() => {
         // Fetch projects from the server when the component mounts

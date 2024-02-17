@@ -6,24 +6,37 @@
     align-items: center;
     min-height: 100vh;
     overflow: hidden;
+    background: url(../assets/bg.jpg);
+    background-size: cover;
     
-    /* Prevent the whole page from scrolling */
 }
 
 .chatboxcontainer {
+    
     display: flex;
     width: 100vw;
+    align-self: baseline;
+    border: 5px black;
     /* Take the whole width of the viewport */
 }
 
 .channelssection {
     flex: 1;
-    border-right: 1px solid #ccc;
+    border-right: 4px solid #ccc;
     padding: 10px;
     overflow-y: auto;
     /* Enable scrolling */
     max-height: calc(100vh - 20px);
     /* Take the full height of the viewport minus some space */
+}
+.channelssection h2 {
+    margin-top: 5%;
+    margin-bottom: 3%;
+   
+}
+.channelssection p {
+    margin-bottom: 5%;
+
 }
 
 .channellist {
@@ -74,7 +87,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    background-color: #eee;
+    background-color: transparent;
 }
 
 .messageinput input {
@@ -87,6 +100,7 @@
     background-color: #000000;
     color: #ffffff;
     padding: 8px;
+    margin-bottom: 7px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -94,4 +108,6 @@
 
 .messageinput button:hover {
     background-color: #333333;
+    border-radius: 30px;
+
 }
