@@ -177,7 +177,7 @@ function Allchannels() {
             <div className={allchnlcss.row1}>
                 <input className={allchnlcss.searchBar} type="text"
                  placeholder="Search Channels..." onChange={(e) => setSearch(e.target.value)}/>
-                <button className={allchnlcss.createButton}>Create Channel</button>
+                <a href="/createchannel"><button className={allchnlcss.createButton}>Create Channel</button></a>
             </div>
             <div className={allchnlcss.row2}>
                 {/* List of channel cards */}
