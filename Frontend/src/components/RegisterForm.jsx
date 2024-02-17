@@ -27,7 +27,7 @@ const RegisterForm = () => {
 
                 });
                 if (response.ok) {
-                    routetohome()
+                    routetoproject()
                 }
             } catch (error) {
                 console.error('Error checking login status:', error);

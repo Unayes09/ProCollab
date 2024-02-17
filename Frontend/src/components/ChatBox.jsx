@@ -8,7 +8,6 @@ import Navbar from './Navbar';
 import { useNavigate } from 'react-router-dom';
 
 const ChatBox = () => {
-  // Dummy data for channels and chat messages
   const navigate = useNavigate()
   const urlSearchParams = new URLSearchParams(window.location.search);
   const id = urlSearchParams.get('id');
@@ -38,8 +37,11 @@ const ChatBox = () => {
               if (response.ok) {
                   //routetohome()
               }
+              else{
+                routetohome();
+              }
           } catch (error) {
-              routetohome();
+              
           }
       };
   
@@ -124,7 +126,7 @@ const ChatBox = () => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(formData)
-
+                
             })
             .then(async response => {
                 const data = await response.json()

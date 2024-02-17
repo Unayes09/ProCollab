@@ -50,8 +50,11 @@ function Home() {
                 if (response.ok) {
                     
                 }
+                else{
+                    routetohome()
+                }
             } catch (error) {
-                routetohome()
+                
             }
         };
     

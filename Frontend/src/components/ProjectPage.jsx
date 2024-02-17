@@ -12,6 +12,9 @@ const ProjectPage = () => {
   function routetohome(){
     navigate('/signin')
   }
+  function routetoproject(){
+    navigate('/homepage')
+  }
   const [projectData, setProject] = useState(
 {
     title: '',
@@ -184,25 +187,23 @@ const ProjectPage = () => {
   };
 
   const handleComment = async(e) => {
-    // Logic for handling the comment button click
     e.preventDefault();
 
         try {
             const formData = {
                 projectId:id,
-                username: user,
+                username:user,
                 comment:userComment
             }
             console.log(formData)
-            let jsonData = "";
-            await fetch('http://localhost:8000/auth/comment', {
-                method: 'POST',
+            const ress = await fetch('http://localhost:8000/auth/comment', {
+                method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(formData)
-
             })
+            //console.log(ress)
             .then(async response => {
                 const data = await response.json()
                 console.log(id)
@@ -216,14 +217,40 @@ const ProjectPage = () => {
                   console.log(error)
                 }
             })
-            .catch(err=>console.log(err))
+            .catch(err=>console.log("what"))
         } catch (error) {
             console.error('Error submitting form:', error);
         }
   };
 
-  const handleDelete = () => {
-    // Logic for handling the delete button click
+  const handleDelete = async(e) => {
+    e.preventDefault();
+
+        try {
+            const formData = {
+                id:id
+            }
+            console.log(formData)
+            const ress = await fetch('http://localhost:8000/auth/delete', {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(async response => {
+                const data = await response.json()
+                if (response.ok) {
+                  routetoproject()
+                }
+                else {
+                  console.log(error)
+                }
+            })
+            .catch(err=>console.log("what"))
+        } catch (error) {
+            console.error('Error submitting form:', error);
+        }
   };
 
   return (

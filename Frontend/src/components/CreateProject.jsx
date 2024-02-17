@@ -12,7 +12,7 @@ const CreateProject = () => {
     navigate('/homepage')
   }
   function routetohome(){
-    navigate('/login')
+    navigate('/signin')
 }
 
 useEffect(() => {

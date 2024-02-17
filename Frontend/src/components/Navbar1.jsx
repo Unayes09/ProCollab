@@ -24,8 +24,11 @@ function Navbar1() {
             if (response.ok) {
                 //routetohome()
             }
+            else{
+                routetohome()
+            }
         } catch (error) {
-            routetohome();
+            //routetohome();
         }
     };
 
@@ -65,8 +68,8 @@ useEffect(() => {
 
                     <a href="/signin">Sign in</a>
                     <a href={"http://localhost:8000/api/resource?user="+user}>Resources</a>
-                    <a href="/channels">Channels</a>
-                    <a href="/Project">Projects</a>
+                    <a href="/Allchannels">Channels</a>
+                    <a href="/homepage">Projects</a>
 
                 </div>
             </nav>

@@ -17,6 +17,9 @@ const ForgetPassword = () => {
     function routetohome() {
         navigate('/signin')
     }
+    function routetohome2() {
+        navigate('/homepage')
+    }
     useEffect(() => {
         const checkLoggedIn = async () => {
             try {
@@ -30,7 +33,7 @@ const ForgetPassword = () => {
 
                 });
                 if (response.ok) {
-                    routetohome()
+                    routetohome2()
                 }
             } catch (error) {
                 console.error('Error checking login status:', error);

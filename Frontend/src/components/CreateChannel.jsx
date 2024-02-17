@@ -13,7 +13,7 @@ const CreateChannel = () => {
     navigate('/homepage')
   }
   function routetohome(){
-    navigate('/login')
+    navigate('/signin')
     }
     
   const [ChannelData, setChannelData] = useState({
