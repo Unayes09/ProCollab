@@ -1,11 +1,124 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ProjectPageCss from'./ProjectPage.module.css'; // Make sure to import your CSS file
 import Navbar from './Navbar';
+import { useNavigate } from 'react-router-dom';
 
 const ProjectPage = () => {
+
+  const navigate = useNavigate()
+  const urlSearchParams = new URLSearchParams(window.location.search);
+  const id = urlSearchParams.get('id');
+  let [user, setUser] = useState();
+  function routetohome(){
+    navigate('/signin')
+  }
+  const [projectData, setProject] = useState(
+{
+    title: '',
+    name:'',
+    short:'',
+    description: '',
+    photos:[],
+    like:0,
+    dislike:0
+  });
+
+  const [imageUrls, setImage] = useState([])
+  const [likes, setlike] = useState(false)
+  const [dislikes, setdislike] = useState(false)
+
+    useEffect(() => {
+      const checkLoggedIn = async () => {
+          try {
+              const token = localStorage.getItem('token')
+              const response = await fetch('http://localhost:8000/api/verify/'+token, {
+                  method: 'GET',
+                  headers: {
+                      'Content-Type': 'application/json',
+                  }
+  
+              });
+              if (response.ok) {
+                  //routetohome()
+              }
+          } catch (error) {
+              routetohome();
+          }
+      };
+  
+      checkLoggedIn();
+  }, []);
+  useEffect(() => {
+      const checkUsername = async () => {
+          try {
+              const token = localStorage.getItem('token')
+              await fetch('http://localhost:8000/api/username/'+token, {
+                  method: 'GET',
+                  headers: {
+                      'Content-Type': 'application/json',
+                  }
+  
+              })
+              .then(async response => {
+                const data = await response.json()
+                user = data.username
+                setUser(data.username)
+            })
+          } catch (error) {
+              console.error('Error checking login status:', error);
+          }
+      };
+  
+      checkUsername();
+  }, []);
+
   const [photoIndex, setPhotoIndex] = useState(1);
   const [userComment, setUserComment] = useState('');
+  const [chatMessages, setChatMessages] = useState([]);
+  const [messageSent, setMessageSent] = useState(false);
+
+  useEffect(() => {
+    // Fetch projects from the server when the component mounts
+    if (!user) return;
+    const fetchChannels = async () => {
+        try {
+            const response = await fetch('http://localhost:8000/api/projects?id='+id, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+
+            });
+            const ress = await response.json()
+            //setProjects(ress)
+            if (response.ok) {
+              const updateProjects = async () => {
+                
+                setProject({ ...projectData, title: ress.title, short:ress.shareable_links, 
+                  description: ress.description,name: ress.project_holder,photos: ress.photos, like:ress.like, dislike:ress.dislike })
   
+                }
+              await updateProjects();
+              const updateimages = async () => {
+                setImage(ress.photos)
+                
+                }
+                await updateimages();
+              const updatetalks = async () => {
+                setChatMessages(ress.comments)
+                setMessageSent(false)
+                    
+                }
+                await updatetalks();
+            }
+        } catch (error) {
+            console.error('Error fetching projects:', error);
+      }
+    }
+    fetchChannels();
+}, [user,likes,dislikes,messageSent]);
+
+
   const [comments, setComments] = useState(Array.from({ length: 50 }, (_, index) => ({
     id: index + 1,
     name: `User ${index + 1}`,
@@ -24,35 +137,94 @@ const ProjectPage = () => {
   // Now you can use this array in your component where you render the list of comments.
 
 
-  const handleLike = () => {
+  const handleLike = async(e) => {
+    e.preventDefault();
     // Logic for handling the like button click
+    try {
+      const response = await fetch('http://localhost:8000/auth/like', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body:JSON.stringify({
+            id:id
+          })
+
+      });
+      const ress = await response.json()
+      if (response.ok) {
+        setlike(!likes)
+      }
+      } catch (error) {
+          console.error('Error fetching projects:', error);
+    }
   };
 
-  const handleDislike = () => {
+  const handleDislike = async(e) => {
+    e.preventDefault();
     // Logic for handling the dislike button click
+    try {
+      const response = await fetch('http://localhost:8000/auth/dislike', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body:JSON.stringify({
+            id:id
+          })
+
+      });
+      const ress = await response.json()
+      if (response.ok) {
+        setdislike(!dislikes)
+      }
+      } catch (error) {
+          console.error('Error fetching projects:', error);
+    }
   };
 
-  const handleComment = () => {
+  const handleComment = async(e) => {
     // Logic for handling the comment button click
+    e.preventDefault();
+
+        try {
+            const formData = {
+                projectId:id,
+                username: user,
+                comment:userComment
+            }
+            console.log(formData)
+            let jsonData = "";
+            await fetch('http://localhost:8000/auth/comment', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+
+            })
+            .then(async response => {
+                const data = await response.json()
+                console.log(id)
+                if (response.ok) {
+                  const updatetalks = async () => {
+                      setMessageSent(true)
+                    }
+                    await updatetalks();
+                }
+                else {
+                  console.log(error)
+                }
+            })
+            .catch(err=>console.log(err))
+        } catch (error) {
+            console.error('Error submitting form:', error);
+        }
   };
 
   const handleDelete = () => {
     // Logic for handling the delete button click
   };
-
-  const imageUrls = [
-    'https://via.placeholder.com/300',
-    'https://via.placeholder.com/300',
-    'https://via.placeholder.com/300',
-    'https://via.placeholder.com/300',
-    'https://via.placeholder.com/300',
-    'https://via.placeholder.com/300',
-    'https://via.placeholder.com/300',
-    'https://via.placeholder.com/300',
-    'https://via.placeholder.com/300',
-    'https://via.placeholder.com/300',
-    // Add more image URLs as neededS
-  ];
 
   return (
 
@@ -62,13 +234,13 @@ const ProjectPage = () => {
       
     <div className={ProjectPageCss.wrapper}>
       <div className={ProjectPageCss.leftsection}>
-        <h1>Project Title</h1>
-        <p>@John Doe</p>
-        <p>Short Description: This is a short description of the project. Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis dignissimos ipsam unde quos exercitationem magni amet vitae? Tempore culpa porro commodi vel numquam dolorum quaerat, illum blanditiis ipsam voluptatibus dolores assumenda ea vitae earum exercitationem omnis neque ducimus ipsa eius nostrum quia ratione. Assumenda, est quos. Magni, expedita laboriosam! Atque quam, minima vero harum quia voluptatum. Ipsa ab fugit deserunt alias inventore voluptatibus facere a enim accusamus ut illo, ea adipisci culpa corporis distinctio perferendis expedita dolore molestiae tempore sed quas aliquam eius delectus! Minima modi, deleniti iure quas fugiat accusamus dolorum porro necessitatibus esse laborum nostrum voluptates animi dolorem doloribus inventore? Rem, dicta velit mollitia vero voluptas libero iure optio odit eaque recusandae. Eos a autem, impedit culpa iste omnis quisquam voluptate, dolorem nulla nesciunt, temporibus nemo magni libero provident sapiente rem adipisci minima qui. Officia tenetur amet ab assumenda doloribus provident atque, tempore natus voluptatum quas qui molestias. Maxime consectetur eius asperiores distinctio libero nulla dignissimos laborum. Autem velit consectetur atque, beatae eius aperiam sunt accusantium iste nemo impedit porro eum unde est asperiores! Quaerat, corporis accusantium. Amet unde quisquam dignissimos sunt porro exercitationem! Culpa nam id eum ut cumque non vitae. Officiis laudantium nemo dolorum labore atque?</p>
-        <p>Full Description: This is the full description of the project. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta, unde a. Culpa accusamus neque voluptatum corporis reiciendis impedit ducimus atque eos ex debitis autem, molestiae molestias odio consectetur doloribus non qui consequuntur dolor nisi quo minima at in quam. Temporibus nulla, adipisci dignissimos beatae magnam ratione architecto, eveniet doloremque soluta voluptatibus dolore deserunt ad voluptatem ab a voluptatum, quo dolores odio corporis ipsum tempore quaerat quis repudiandae. Voluptates doloribus dolor itaque rerum maxime nihil numquam repellendus distinctio. Enim, veniam praesentium rerum consectetur hic numquam reiciendis veritatis cumque porro, neque libero voluptate sapiente quisquam a! Officiis enim earum deserunt eos ipsum laudantium tenetur magnam error, sequi quidem tempora, id saepe at quisquam doloremque unde dolores fugit dicta impedit. Nisi nemo facilis ullam aperiam, laboriosam labore! Quas in veniam itaque quod quisquam recusandae quis! Iure aperiam accusantium nobis ullam? Numquam dolores tenetur itaque minima tempore fugiat vero libero animi sint, voluptates in magnam expedita laborum ab ex. In libero maiores, laborum sit cupiditate quos voluptate error facere! Corrupti assumenda laboriosam temporibus exercitationem eius omnis incidunt iusto est ab accusantium nihil distinctio eveniet aliquid magnam mollitia dolore soluta deleniti sit, ullam vero. Maiores fuga alias ab est ducimus tempore amet exercitationem nihil soluta.</p>
+        <h1>{projectData.title}</h1>
+        <p>@ {projectData.name}</p>
+        <p>Associated links: <b>{projectData.short}</b></p>
+        <p>{projectData.description}</p>
         <div className={ProjectPageCss.buttons}>
-          <button onClick={handleLike}>Like</button>
-          <button onClick={handleDislike}>Dislike</button>
+          <button onClick={handleLike}>Like {projectData.like}</button>
+          <button onClick={handleDislike}>Dislike {projectData.dislike}</button>
             {/* Add conditional rendering for the delete button */}
             
           {true && <button onClick={handleDelete}>Delete</button>}
@@ -86,18 +258,12 @@ const ProjectPage = () => {
               Comment
             </button>
             <div className={ProjectPageCss.allComments}>
-              {comments.map((comment) => (
+              {chatMessages.map((comment) => (
                 <CommentCard
-                  key={comment.id}
+                  key={comment._id}
                   name={comment.name}
                   comment={comment.comment}
                 >
-                  <button
-                    className={ProjectPageCss.deleteButton}
-                    onClick={() => handleDelete(comment.id)}
-                  >
-                    Delete
-                  </button>
                 </CommentCard>
               ))}
             </div>

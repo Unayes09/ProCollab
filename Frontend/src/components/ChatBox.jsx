@@ -90,8 +90,7 @@ const ChatBox = () => {
                   const updateProjects = async () => {
                     
                     setChannels({ ...channelData, title: ress.title, description: ress.description,name: ress.channel_holder,talks: ress.talks  })
-                    
-                    
+                   
                     }
                   await updateProjects();
                   const updatetalks = async () => {
@@ -169,7 +168,7 @@ const ChatBox = () => {
 
           <div className={ChatBoxCss.chatsection}>
             <div className={ChatBoxCss.channelname}>
-            <h2>channel name now at</h2>
+            <h2>{channelData.title}</h2>
           </div>
 
             <div className={ChatBoxCss.chatcontainer} id="chat-container">

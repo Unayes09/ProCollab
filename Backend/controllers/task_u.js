@@ -272,8 +272,9 @@ exports.Feedback = async(req,res)=>{
 
 exports.Comment = async(req,res)=>{
     try {
-        const { projectId, username, comment } = req.body
-
+        const projectId = req.body.projectId
+        const username = req.body.username
+        const comment = req.body.comment
         const project = await ProjectModel.findById(projectId)
 
         if (!project) {

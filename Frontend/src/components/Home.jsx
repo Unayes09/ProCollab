@@ -157,9 +157,11 @@ function Home() {
 
     useEffect(() => {
         // Fetch projects from the server when the component mounts
+        if (!user) return;
         const fetchChannels = async () => {
             try {
-                const response = await fetch('http://localhost:8000/api/channels', {
+                console.log(user)
+                const response = await fetch('http://localhost:8000/api/channels?user='+user, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -179,7 +181,7 @@ function Home() {
             }
         }
         fetchChannels();
-    }, []);
+    }, [user]);
 
     useEffect(() => {
         console.log('Form data changed:', FeedBackData);

@@ -174,14 +174,14 @@ exports.allChannels = async(req,res)=>{
             if (!project) {
                 res.status(404).json('Channel not found')
             }
-            res.status(200).json(project)
+            else res.status(200).json(project)
         } 
         else if (req.query.user) {
             const project = await ChannelModel.find({channel_holder:req.query.user})
             if (!project) {
                 res.status(404).json('Channel not found')
             }
-            res.status(200).json(project)
+            else res.status(200).json(project)
         } 
         else {
             const projects = await ChannelModel.find()
