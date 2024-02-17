@@ -1,32 +1,30 @@
-import React from 'react';
-import Profilecss from './ProfilePage.module.css'
-import Profile1 from '../assets/projectphoto.jpg'
-import Profile2 from '../assets/projectphoto2.jpeg'
+import profilecss from './ProfilePage.module.css'
 import Navbar from './Navbar';
-const ProfilePage = () => {
+import dp from '/sq4.jpg'
+
+const Profilepage = () => {
 
 
     return (
         <>
-            <div className={Profilecss.Navbar}>  <Navbar /> </div> 
-            <div className={Profilecss.root}>
-        <div className={Profilecss.container}>
-            <div className={Profilecss.NameAndShort}>
-                <h3>Name of Project</h3>
-                <p>short description here</p>
-            </div>
-            <div className={Profilecss.Description}> 
-                <p>Description</p>
-            </div>
-            <div className={Profilecss.Photos}>
-                <img src={Profile1} width={300} height={300}/><br/>
-                <img src={ Profile2} width={300} height={300}/>
-            </div>
+            <div className={profilecss.mainroot}>
+                <Navbar />
+                <div className={profilecss.profilesection}>
+                    <div className={profilecss.leftsection}>
+                        <img src={dp} alt="hi" className={ profilecss.dp} />
+                        <span className={profilecss.username}>User name</span>
+                    </div>
+                    <div className={profilecss.rightsection1}>
+                        hello
+                    </div>
+                    <div className={profilecss.rightsection2}>
+                            hay
+                    </div>
+                </div>
 
-                </div>
-                </div>
-            </>
+            </div>
+        </>
     );
 };
 
-export default ProfilePage;
+export default Profilepage;
