@@ -3,30 +3,28 @@ import profilecss from "./ProfilePage.module.css";
 import Navbar from "./Navbar";
 import { FaLock, FaSignOutAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { FaStar } from 'react-icons/fa';
-
+import { FaStar } from "react-icons/fa";
 
 const ProjectCard = ({ keys, title, description, imageUrl, tags }) => {
-    console.log(keys+title+description)
-    return (
-        <div className={profilecss.projectCard}>
-            {/* Left Section */}
-            <div className={profilecss.textSection}>
-                <h3>{title}</h3>
-                <p>{description}</p>
-                <div className={profilecss.tagsSection}>
-                    {tags && tags.map((tag, index) => (
-                        <span key={index} className={profilecss.tag}>{tag}</span>
-                    ))}
-                </div>
-                <a href={"http://localhost:5173/projectpage?id=" + keys}>
-                    <button className={profilecss.see_more}>
-                        See More 
-                    </button>
-                    
-                </a>
-
-            </div>
+  console.log(keys + title + description);
+  return (
+    <div className={profilecss.projectCard}>
+      {/* Left Section */}
+      <div className={profilecss.textSection}>
+        <h3>{title}</h3>
+        <p>{description}</p>
+        <div className={profilecss.tagsSection}>
+          {tags &&
+            tags.map((tag, index) => (
+              <span key={index} className={profilecss.tag}>
+                {tag}
+              </span>
+            ))}
+        </div>
+        <a href={"http://localhost:5173/projectpage?id=" + keys}>
+          <button className={profilecss.see_more}>See More</button>
+        </a>
+      </div>
 
       {/* Right Section */}
       <div className={profilecss.imageSection}>
@@ -85,7 +83,7 @@ const Profilepage = () => {
         }).then(async (response) => {
           const data = await response.json();
           user = data.username;
-            setUser(data.username);
+          setUser(data.username);
         });
       } catch (error) {
         console.error("Error checking login status:", error);
@@ -96,7 +94,7 @@ const Profilepage = () => {
   }, []);
 
   const [Myprojects, setMyprojects] = useState([]);
-  const [reputation,setReputation] = useState(0)
+  const [reputation, setReputation] = useState(0);
 
   useEffect(() => {
     if (!user) return;
@@ -110,12 +108,11 @@ const Profilepage = () => {
         }).then(async (response) => {
           const data = await response.json();
           const updateProjects = async () => {
-              setMyprojects(data);
-              
+            setMyprojects(data);
           };
-            await updateProjects();
+          await updateProjects();
 
-            console.log(Myprojects);
+          console.log(Myprojects);
         });
       } catch (error) {
         console.error("Error fetching Myprojects:", error);
@@ -123,7 +120,7 @@ const Profilepage = () => {
     };
     fetchMyProjects();
   }, [user]);
-    
+
   useEffect(() => {
     if (!user) return;
     const fetchMyProjects = async () => {
@@ -199,10 +196,13 @@ const Profilepage = () => {
                       {tag}
                     </span>
                   ))}
-                </div>
-                <div className={profilecss.reputation}>
-                  <span className={profilecss.icon}><FaStar /></span>Reputation score: {reputation}%
-                </div>          
+              </div>
+              <div className={profilecss.reputation}>
+                <span className={profilecss.icon}>
+                  <FaStar />
+                </span>
+                Reputation score: {reputation}%
+              </div>
             </div>
 
             <button
