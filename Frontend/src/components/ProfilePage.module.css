@@ -104,7 +104,7 @@
     margin-right: 8px;
 }
 .projectCard {
-    display: flex;
+    display: grid;
     margin-bottom: 4px;
     padding: 20px;
     border: 1px solid #ccc;
@@ -114,7 +114,8 @@
     margin-bottom: 10px;
     background-color: #FFFFE4;
     margin-right: 10px;
-
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr;
 }
 
 .projectCard:hover {
@@ -124,10 +125,7 @@
     /* Add shadow on hover, adjust as needed */
 }
 
-.textSection {
-    flex: 1;
-    padding-right: 20px;
-}
+
 
 .textSection h4 {
     margin-bottom: 15px;
@@ -198,4 +196,12 @@
     padding: 20px;
     justify-content: left;
     margin-right: 10px;
+}
+.imageSection{
+    grid-area: 1/2/2/3;
+}
+.textSection {
+    flex: 1;
+    padding-right: 20px;
+    grid-area: 1/1/2/2;
 }

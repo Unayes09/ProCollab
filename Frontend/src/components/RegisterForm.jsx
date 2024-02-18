@@ -109,7 +109,7 @@ const RegisterForm = () => {
            
         })
       } catch (error) {
-          console.error('Error submitting form:', error);
+          console.log('Error submitting form:', error);
     }
     console.log(JSON.stringify(RegisterData));
   };
