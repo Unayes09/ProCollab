@@ -20,7 +20,7 @@ function Firstpage() {
 
       <div class={firstpagecss.imagesqr}>
         <div class={`${firstpagecss.box1} ${firstpagecss.descriptionBox}`}>
-          <h2>Channel</h2>
+          <h2>Channels</h2>
 
           <p>
             Discover our "Channel" module – a hub for project enthusiasts.
@@ -31,7 +31,7 @@ function Firstpage() {
           </p>
         </div>
         <div class={`${firstpagecss.box2} ${firstpagecss.descriptionBox}`}>
-          <h2>Project-Hub</h2>
+          <h2>Projects</h2>
           <p>
             Step into our Project Hub, a dynamic space for innovators to
             showcase projects and build connections. Express appreciation with
