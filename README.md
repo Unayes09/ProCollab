@@ -1,5 +1,7 @@
 # ProCollab - Collaborative Platform for Knowledge Sharing
 
+[API Documentation]([path/to/your/readme/file.md](https://documenter.getpostman.com/view/31012961/2sA2r3ZktU))
+
 ## Description:
 ProCollab is a collaborative platform designed to facilitate knowledge sharing among users. It provides features such as registration with email verification, resource-based user interest recommendations, sensitive search for projects and channels, user feedback mechanisms, discussion forums, multimedia information sharing capabilities, and reputation scoring based on contributions.
 
