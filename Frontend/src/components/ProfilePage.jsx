@@ -191,8 +191,8 @@ const Profilepage = () => {
               <div className={profilecss.myprojects}>
                 {Myprojects.map((project) => (
                   <ProjectCard
-                    key={project.keys}
-                    owner={project.owner}
+                    key={project._id}
+                    keys={project._id}
                     title={project.title}
                     description={project.subject}
                     imageUrl={project.photos}
