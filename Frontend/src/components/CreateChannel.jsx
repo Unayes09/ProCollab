@@ -10,7 +10,7 @@ const CreateChannel = () => {
   let user;
   const navigate = useNavigate()
   function routetoproject(){
-    navigate('/homepage')
+    navigate('/Allchannels')
   }
   function routetohome(){
     navigate('/signin')
@@ -116,7 +116,7 @@ useEffect(() => {
         })
         .then(async response => {
             const data = await response.json()
-            if (response.status === 200) {
+            if (response.status === 201) {
                 console.log(response.status)
                 routetoproject()
                 

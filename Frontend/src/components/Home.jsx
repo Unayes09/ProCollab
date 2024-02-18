@@ -87,7 +87,7 @@ function Home() {
     const [projects, setProjects] = useState([]);
     const [channel, setChannels] = useState([]);
     const [FeedBackData, setFeedBack] = useState();
-    const [search, setSearch] = useState();
+    const [search, setSearch] = useState("");
     
     
     useEffect(() => {
