@@ -24,4 +24,6 @@ router.get('/userChannel',authController.userChannel)
 
 router.get('/isJoin',authController.isJoin)
 
+router.get('/reputation',authController.Reputation)
+
 module.exports=router

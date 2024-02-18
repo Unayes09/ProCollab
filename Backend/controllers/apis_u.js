@@ -261,3 +261,27 @@ exports.isJoin = async(req,res)=>{
         return res.status(500).json({ message: 'Internal server error' });
     }
 }
+
+exports.Reputation = async(req,res)=>{
+    try {
+        const userId = req.query.user;
+
+        const projects = await ProjectModel.find({ project_holder: userId });
+
+        let totalLikes = 0;
+        let totalDislikes = 0;
+
+        projects.forEach(project => {
+            totalLikes += project.like || 0;
+            totalDislikes += project.dislike || 0;
+        });
+
+        // Calculate reputation score
+        const reputationScore = totalLikes / (totalLikes + totalDislikes) * 100;
+
+        res.json({ reputationScore: reputationScore });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+}
