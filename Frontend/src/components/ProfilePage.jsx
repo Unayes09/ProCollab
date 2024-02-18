@@ -3,8 +3,8 @@ import profilecss from "./ProfilePage.module.css";
 import Navbar from "./Navbar";
 import { FaLock, FaSignOutAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { FaStar } from 'react-icons/fa';
 
-const tags = ["React", "JavaScript", "CSS", "Node.js", "Express", "MongoDB"];
 
 const ProjectCard = ({ keys, title, description, imageUrl, tags }) => {
     console.log(keys+title+description)
@@ -85,7 +85,7 @@ const Profilepage = () => {
         }).then(async (response) => {
           const data = await response.json();
           user = data.username;
-          setUser(data.username);
+            setUser(data.username);
         });
       } catch (error) {
         console.error("Error checking login status:", error);
@@ -95,7 +95,7 @@ const Profilepage = () => {
     checkUsername();
   }, []);
 
-  const [Myprojects, setMyprojects] = useState([]);
+    const [Myprojects, setMyprojects] = useState([]);
 
   useEffect(() => {
     if (!user) return;
@@ -109,9 +109,12 @@ const Profilepage = () => {
         }).then(async (response) => {
           const data = await response.json();
           const updateProjects = async () => {
-            setMyprojects(data);
+              setMyprojects(data);
+              
           };
-          await updateProjects();
+            await updateProjects();
+
+            console.log(Myprojects);
         });
       } catch (error) {
         console.error("Error fetching Myprojects:", error);
@@ -119,6 +122,8 @@ const Profilepage = () => {
     };
     fetchMyProjects();
   }, [user]);
+    
+    
 
   const [userData, setuserData] = useState([]);
 
@@ -170,7 +175,10 @@ const Profilepage = () => {
                       {tag}
                     </span>
                   ))}
-              </div>
+                </div>
+                <div className={profilecss.reputation}>
+                  <span className={profilecss.icon}><FaStar /></span>Reputation score: {}
+                </div>          
             </div>
 
             <button
