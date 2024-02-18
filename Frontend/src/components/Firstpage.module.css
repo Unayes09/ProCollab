@@ -83,7 +83,7 @@
 .descriptionBox:hover {
     transform: scale(1.05);
     transition-duration: 0.3s;
-    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+   
     /* Adjust the scale factor as needed for zoom effect */
     box-shadow: 0px 0px 7px 0px #999999;
     /* Add shadow on hover, adjust as needed */
