@@ -8,8 +8,8 @@ const tags = ['React', 'JavaScript', 'CSS', 'Node.js', 'Express', 'MongoDB'];
 
 
 
-const ProjectCard = ({ keys, owner, title, description, imageUrl, tags }) => {
-    //console.log(key+owner+name+description)
+const ProjectCard = ({ keys, title, description, imageUrl, tags }) => {
+    console.log(keys+title+description)
     return (
         <div className={profilecss.projectCard}>
             {/* Left Section */}
@@ -21,7 +21,7 @@ const ProjectCard = ({ keys, owner, title, description, imageUrl, tags }) => {
                         <span key={index} className={profilecss.tag}>{tag}</span>
                     ))}
                 </div>
-                <a href="#">
+                <a href={"http://localhost:5173/projectpage?id=" + keys}>
                     <button className={profilecss.see_more}>
                         See More 
                     </button>
@@ -158,7 +158,7 @@ const Profilepage = () => {
         fetchuserData();
 
     }, [user]);
-
+    console.log(Myprojects)
 
 
     return (
@@ -196,19 +196,24 @@ const Profilepage = () => {
                         </button>
                     </div>
                     <div className={profilecss.rightsection}>   
-                        <div className={profilecss.projectlist}>    
-                            <div className={profilecss.myprojects}>
+                        <div className={profilecss.projectlist}>
+                            {Myprojects.length > 0 && <div className={profilecss.myprojects}>
                                 {Myprojects.map((project) => (
                                     <ProjectCard
-                                    key={project.keys}
-                                    owner={project.owner}
-                                    title={project.title}
-                                    description={project.subject}
-                                    imageUrl={project.photos}
-                                    tags={project.tags} 
+                                        key={project._id}
+                                        keys={project._id}
+                                        title={project.title}
+                                        description={project.subject}
+                                        imageUrl={project.photos}
+                                        tags={project.tags}
                                     />
-                            ))}
-                            </div>
+                                ))}
+                            </div>}
+                            {Myprojects.length == 0 && <div>
+                                <h2 className={profilecss.nothing_to_show}>Nothing to show</h2>
+                                </div>
+                                
+                            }
                         </div>
                     </div>
                 </div>
