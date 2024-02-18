@@ -277,7 +277,7 @@ exports.Reputation = async(req,res)=>{
         });
 
         // Calculate reputation score
-        const reputationScore = totalLikes / (totalLikes + totalDislikes) * 100;
+        const reputationScore = Math.round(totalLikes / (totalLikes + totalDislikes) * 100);
 
         res.json({ reputationScore: reputationScore });
     } catch (error) {

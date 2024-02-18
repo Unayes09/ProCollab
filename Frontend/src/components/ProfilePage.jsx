@@ -95,7 +95,8 @@ const Profilepage = () => {
     checkUsername();
   }, []);
 
-    const [Myprojects, setMyprojects] = useState([]);
+  const [Myprojects, setMyprojects] = useState([]);
+  const [reputation,setReputation] = useState(0)
 
   useEffect(() => {
     if (!user) return;
@@ -123,7 +124,30 @@ const Profilepage = () => {
     fetchMyProjects();
   }, [user]);
     
-    
+  useEffect(() => {
+    if (!user) return;
+    const fetchMyProjects = async () => {
+      try {
+        await fetch("http://localhost:8000/api/reputation?user=" + user, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }).then(async (response) => {
+          const data = await response.json();
+          const updateProjects = async () => {
+            setReputation(data.reputationScore);
+          };
+          await updateProjects();
+
+          console.log(reputation);
+        });
+      } catch (error) {
+        console.error("Error fetching Myprojects:", error);
+      }
+    };
+    fetchMyProjects();
+  }, [user]);
 
   const [userData, setuserData] = useState([]);
 
@@ -177,7 +201,7 @@ const Profilepage = () => {
                   ))}
                 </div>
                 <div className={profilecss.reputation}>
-                  <span className={profilecss.icon}><FaStar /></span>Reputation score: {}
+                  <span className={profilecss.icon}><FaStar /></span>Reputation score: {reputation}%
                 </div>          
             </div>
 
