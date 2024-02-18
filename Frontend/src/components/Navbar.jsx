@@ -5,33 +5,7 @@ import { useNavigate } from 'react-router-dom';
 function Navbar() {
     const navigate = useNavigate()
     let [user, setUser] = useState();
-  function routetohome(){
-    navigate('/signin')
-  }
-  useEffect(() => {
-    const checkLoggedIn = async () => {
-        try {
-            const token = localStorage.getItem('token')
-            const response = await fetch('http://localhost:8000/api/verify/'+token, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                }
-
-            });
-            if (response.ok) {
-                //routetohome()
-            }
-            else{
-                routetohome()
-            }
-        } catch (error) {
-            //routetohome();
-        }
-    };
-
-    checkLoggedIn();
-}, []);
+ 
 useEffect(() => {
     const checkUsername = async () => {
         try {
@@ -67,7 +41,9 @@ useEffect(() => {
 
 
                     <a href="/profilepage">Profile</a>
-                    <a href={"http://localhost:8000/api/resource?user="+user}>Resources</a>
+                    
+                    {user && <a href={"http://localhost:8000/api/resource?user=" + user}>Resources</a>}
+                    {!user && <a href={"http://localhost:5173/signin"}>Resources</a>}
                     <a href="/Allchannels">Channels</a>
                     <a href="/homepage">Projects</a>
 

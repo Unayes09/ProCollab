@@ -1,58 +1,30 @@
-# ProCollab - Software Requirements Specification (SRS)
+# ProCollab - Collaborative Platform for Knowledge Sharing
 
-## Introduction
+## Description:
+ProCollab is a collaborative platform designed to facilitate knowledge sharing among users. It provides features such as registration with email verification, resource-based user interest recommendations, sensitive search for projects and channels, user feedback mechanisms, discussion forums, multimedia information sharing capabilities, and reputation scoring based on contributions.
 
-### Purpose
-The purpose of this document is to outline the functional and non-functional requirements for the development of ProCollab, a project sharing platform. ProCollab allows users to share their thoughts, projects, and educational resources, interact with other users through liking, disliking, and commenting on projects, and access educational resources based on their interests.
+## Key Features:
 
-### Scope
-ProCollab will provide a user-friendly interface for users to create profiles, upload and manage projects thoughts, engage with other users' projects, and access educational resources. The platform will be built using the MERN (MongoDB, Express.js, React.js, Node.js) stack.
+1. **Email Verification with Registration:**
+   - Users are required to register with a valid email address and verify it to gain access to the platform.
 
-## Functional Requirements
+2. **Resource-Based User Interests:**
+   - The platform recommends resources based on users' specified interests, enhancing the relevance of content.
 
-### User Authentication
-1. Users should be able to register and create an account.
-2. Users should be able to log in using their username and password.
-3. Users should be able to reset their password if forgotten.
+3. **Sensitive Search for Projects and Channels:**
+   - Users can search for projects and channels using keywords while ensuring sensitivity to potentially sensitive topics.
 
-### Profile Management
-1. Users should be able to view and edit their profile information.
-2. Users should be able to delete their account if desired.
+4. **User Feedback:**
+   - Users can provide feedback on projects, channels, and resources to improve the overall quality of content.
 
-### Project Management
-1. Users should be able to create and delete projects.
-2. Projects should include a title, description, and tags for categorization.
-3. Users should be able to upload images or files to accompany their projects.
+5. **Discussion and Resource Sharing in Channels:**
+   - Dedicated channels enable users to engage in discussions and share resources on specific topics of interest.
 
-### Interaction with Projects
-1. Users should be able to like or dislike projects.
-2. Users should be able to comment on projects.
+6. **Multimedia Information Sharing:**
+   - Users can share links, provide information with pictures, and receive responses from others, fostering interactive communication.
 
-### Educational Resources
-1. Users should be able to access educational resources categorized by topics of interest.
-2. Users should be able to view, rate, and comment on educational resources.
+7. **Reputation Score Based on Contributions:**
+   - A reputation score is assigned to users based on their contributions, including sharing projects, providing feedback, and actively participating in discussions, reflecting their credibility and expertise within the community.
 
-### Search Functionality
-1. Users should be able to search for projects based on keywords, project name, description, or tags.
-2. The search should be case insensitive.
-3. Users should be able to filter search results by criteria such as date, popularity, or relevance.
-
-## Non-Functional Requirements
-
-### Performance
-1. The platform should be responsive and load quickly across different devices and screen sizes.
-2. The system should be able to handle a large number of concurrent users without significant performance degradation.
-
-### Security
-1. User passwords should be securely hashed and stored in the database.
-2. User sessions should be managed securely to prevent unauthorized access using JWT.
-
-### Usability
-1. The user interface should be intuitive and easy to navigate.
-2. Error messages should be clear and informative to assist users in troubleshooting.
-
-## API Documentation
-The API documentation for ProCollab can be found [here](https://documenter.getpostman.com/view/31012961/2sA2r3ZktU).
-
-## Glossary
-- MERN: MongoDB, Express.js, React.js, Node.js
+## Acknowledgments:
+We express our gratitude to the open-source community for their valuable contributions and support in developing ProCollab.

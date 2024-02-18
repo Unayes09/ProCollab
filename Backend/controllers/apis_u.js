@@ -194,7 +194,7 @@ exports.allChannels = async(req,res)=>{
 
 exports.getUser = async(req,res)=>{
     try {
-        const username = req.body.username
+        const username = req.query.username
 
         const user = await UserModel.findOne({ username:username })
 
