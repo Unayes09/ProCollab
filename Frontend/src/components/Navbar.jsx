@@ -35,7 +35,7 @@ useEffect(() => {
             
             <nav className={navbar.navbar}>
                 <div className={navbar.navbarleft}>
-                    <span className={navbar.logo}></span>
+                    <span className={navbar.logo}>ProCollab</span>
                 </div>
                 <div className={navbar.navbarright}>
 
