@@ -275,7 +275,7 @@ const ProjectPage = () => {
             </button>
             {/* Add conditional rendering for the delete button */}
 
-            {true && <button onClick={handleDelete}>Delete</button>}
+            {projectData.name==user && <button onClick={handleDelete}>Delete</button>}
           </div>
           <div className={ProjectPageCss.commentSection}>
             <textarea
