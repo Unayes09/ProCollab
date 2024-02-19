@@ -84,7 +84,7 @@ exports.Register = async (req, res) => {
               pass: process.env.PASS,
             },
           });
-          const link = "http://localhost:8000/api/token?token=" + token;
+          const link = "https://procollab-backends.onrender.com/api/token?token=" + token;
           const info = await transporter.sendMail({
             from: '"ProCollab" <ProCollab@gmail.com>', // sender address
             to: email, // list of receivers
