@@ -5,12 +5,16 @@ import { useNavigate } from "react-router-dom";
 function Navbar1() {
   const navigate = useNavigate();
   let [user, setUser] = useState();
+  
+  const buttonon = ()=>{
+    navigate("/signin")
+  }
 
   useEffect(() => {
     const checkUsername = async () => {
       try {
         const token = localStorage.getItem("token");
-        await fetch("http://localhost:8000/api/username/" + token, {
+        await fetch("https://procollab-backends.onrender.com/api/username/" + token, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -35,13 +39,14 @@ function Navbar1() {
           <span className={navbar.logo}>ProCollab</span>
         </div>
         <div className={navbar.navbarright}>
-          <a href="/signin">Sign in</a>
+          {user && <a href="/profilepage">Profile</a>}
+          {!user && <a href="/signin">Sign in</a>}
           {user && (
-            <a href={"http://localhost:8000/api/resource?user=" + user}>
+            <a href={"https://procollab-backends.onrender.com/api/resource?user=" + user}>
               Resources
             </a>
           )}
-          {!user && <a href={"http://localhost:5173/signin"}>Resources</a>}
+          
           <a href="/Allchannels">Channels</a>
           <a href="/homepage">Projects</a>
         </div>

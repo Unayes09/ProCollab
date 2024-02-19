@@ -33,7 +33,7 @@ const ProjectPage = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await fetch(
-          "http://localhost:8000/api/verify/" + token,
+          "https://procollab-backends.onrender.com/api/verify/" + token,
           {
             method: "GET",
             headers: {
@@ -56,7 +56,7 @@ const ProjectPage = () => {
     const checkUsername = async () => {
       try {
         const token = localStorage.getItem("token");
-        await fetch("http://localhost:8000/api/username/" + token, {
+        await fetch("https://procollab-backends.onrender.com/api/username/" + token, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -85,7 +85,7 @@ const ProjectPage = () => {
     const fetchChannels = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8000/api/projects?id=" + id,
+          "https://procollab-backends.onrender.com/api/projects?id=" + id,
           {
             method: "GET",
             headers: {
@@ -151,7 +151,7 @@ const ProjectPage = () => {
     e.preventDefault();
     // Logic for handling the like button click
     try {
-      const response = await fetch("http://localhost:8000/auth/like", {
+      const response = await fetch("https://procollab-backends.onrender.com/auth/like", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -173,7 +173,7 @@ const ProjectPage = () => {
     e.preventDefault();
     // Logic for handling the dislike button click
     try {
-      const response = await fetch("http://localhost:8000/auth/dislike", {
+      const response = await fetch("https://procollab-backends.onrender.com/auth/dislike", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -201,7 +201,7 @@ const ProjectPage = () => {
         comment: userComment,
       };
       console.log(formData);
-      const ress = await fetch("http://localhost:8000/auth/comment", {
+      const ress = await fetch("https://procollab-backends.onrender.com/auth/comment", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -235,7 +235,7 @@ const ProjectPage = () => {
         id: id,
       };
       console.log(formData);
-      const ress = await fetch("http://localhost:8000/auth/delete", {
+      const ress = await fetch("https://procollab-backends.onrender.com/auth/delete", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

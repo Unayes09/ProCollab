@@ -23,7 +23,7 @@ const ForgetPassword = () => {
         const token = localStorage.getItem("token");
         console.log(token);
         const response = await fetch(
-          "http://localhost:8000/api/verify/" + token,
+          "https://procollab-backends.onrender.com/api/verify/" + token,
           {
             method: "GET",
             headers: {
@@ -54,7 +54,7 @@ const ForgetPassword = () => {
         email: EmailData,
       };
 
-      await fetch("http://localhost:8000/auth/forget", {
+      await fetch("https://procollab-backends.onrender.com/auth/forget", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

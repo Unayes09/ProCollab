@@ -19,7 +19,7 @@ const LoginForm = () => {
         const token = localStorage.getItem("token");
         console.log(token);
         const response = await fetch(
-          "http://localhost:8000/api/verify/" + token,
+          "https://procollab-backends.onrender.com/api/verify/" + token,
           {
             method: "GET",
             headers: {
@@ -55,7 +55,7 @@ const LoginForm = () => {
         password: PasswordData,
       };
       let jsonData = "";
-      await fetch("http://localhost:8000/auth/login", {
+      await fetch("https://procollab-backends.onrender.com/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

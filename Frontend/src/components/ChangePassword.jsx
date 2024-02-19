@@ -30,7 +30,7 @@ const ChangePassword = () => {
         new_password: NewPasswordData,
       };
       let jsonData = "";
-      await fetch("http://localhost:8000/auth/changePass", {
+      await fetch("https://procollab-backends.onrender.com/auth/changePass", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

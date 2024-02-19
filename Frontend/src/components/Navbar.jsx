@@ -10,7 +10,7 @@ function Navbar() {
     const checkUsername = async () => {
       try {
         const token = localStorage.getItem("token");
-        await fetch("http://localhost:8000/api/username/" + token, {
+        await fetch("https://procollab-backends.onrender.com/api/username/" + token, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -27,6 +27,10 @@ function Navbar() {
 
     checkUsername();
   }, []);
+  //const navigate = useNavigate()
+  const buttonon = ()=>{
+    navigate("/signin")
+  }
 
   return (
     <>
@@ -38,11 +42,11 @@ function Navbar() {
           <a href="/profilepage">Profile</a>
 
           {user && (
-            <a href={"http://localhost:8000/api/resource?user=" + user}>
+            <a href={"https://procollab-backends.onrender.com/api/resource?user=" + user}>
               Resources
             </a>
           )}
-          {!user && <a href={"http://localhost:5173/signin"}>Resources</a>}
+          
           <a href="/Allchannels">Channels</a>
           <a href="/homepage">Projects</a>
         </div>

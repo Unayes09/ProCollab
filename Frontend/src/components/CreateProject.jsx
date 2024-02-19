@@ -20,7 +20,7 @@ const CreateProject = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await fetch(
-          "http://localhost:8000/api/verify/" + token,
+          "https://procollab-backends.onrender.com/api/verify/" + token,
           {
             method: "GET",
             headers: {
@@ -43,7 +43,7 @@ const CreateProject = () => {
     const checkUsername = async () => {
       try {
         const token = localStorage.getItem("token");
-        await fetch("http://localhost:8000/api/username/" + token, {
+        await fetch("https://procollab-backends.onrender.com/api/username/" + token, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -139,7 +139,7 @@ const CreateProject = () => {
 
     try {
       let jsonData = "";
-      await fetch("http://localhost:8000/auth/createProject", {
+      await fetch("https://procollab-backends.onrender.com/auth/createProject", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

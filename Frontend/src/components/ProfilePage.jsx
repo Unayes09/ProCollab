@@ -7,6 +7,10 @@ import { FaStar } from "react-icons/fa";
 
 const ProjectCard = ({ keys, title, description, imageUrl, tags }) => {
   console.log(keys + title + description);
+  const navigate = useNavigate()
+  const buttonon = ()=>{
+    navigate("/projectpage?id=" + keys)
+  }
   return (
     <div className={profilecss.projectCard}>
       {/* Left Section */}
@@ -21,9 +25,9 @@ const ProjectCard = ({ keys, title, description, imageUrl, tags }) => {
               </span>
             ))}
         </div>
-        <a href={"http://localhost:5173/projectpage?id=" + keys}>
-          <button className={profilecss.see_more}>See More</button>
-        </a>
+        
+          <button className={profilecss.see_more} onClick={buttonon}>See More</button>
+        
       </div>
 
       {/* Right Section */}
@@ -53,7 +57,7 @@ const Profilepage = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await fetch(
-          "http://localhost:8000/api/verify/" + token,
+          "https://procollab-backends.onrender.com/api/verify/" + token,
           {
             method: "GET",
             headers: {
@@ -75,7 +79,7 @@ const Profilepage = () => {
     const checkUsername = async () => {
       try {
         const token = localStorage.getItem("token");
-        await fetch("http://localhost:8000/api/username/" + token, {
+        await fetch("https://procollab-backends.onrender.com/api/username/" + token, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -100,7 +104,7 @@ const Profilepage = () => {
     if (!user) return;
     const fetchMyProjects = async () => {
       try {
-        await fetch("http://localhost:8000/api/projects?user=" + user, {
+        await fetch("https://procollab-backends.onrender.com/api/projects?user=" + user, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -125,7 +129,7 @@ const Profilepage = () => {
     if (!user) return;
     const fetchMyProjects = async () => {
       try {
-        await fetch("http://localhost:8000/api/reputation?user=" + user, {
+        await fetch("https://procollab-backends.onrender.com/api/reputation?user=" + user, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -152,7 +156,7 @@ const Profilepage = () => {
     if (!user) return;
     const fetchuserData = async () => {
       try {
-        await fetch("http://localhost:8000/api/user?username=" + user, {
+        await fetch("https://procollab-backends.onrender.com/api/user?username=" + user, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

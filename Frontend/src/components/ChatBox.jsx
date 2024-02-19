@@ -27,7 +27,7 @@ const ChatBox = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await fetch(
-          "http://localhost:8000/api/verify/" + token,
+          "https://procollab-backends.onrender.com/api/verify/" + token,
           {
             method: "GET",
             headers: {
@@ -49,7 +49,7 @@ const ChatBox = () => {
     const checkUsername = async () => {
       try {
         const token = localStorage.getItem("token");
-        await fetch("http://localhost:8000/api/username/" + token, {
+        await fetch("https://procollab-backends.onrender.com/api/username/" + token, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -76,7 +76,7 @@ const ChatBox = () => {
     const fetchChannels = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8000/api/channels?id=" + id,
+          "https://procollab-backends.onrender.com/api/channels?id=" + id,
           {
             method: "GET",
             headers: {
@@ -121,7 +121,7 @@ const ChatBox = () => {
         talk: newMessage,
       };
       let jsonData = "";
-      await fetch("http://localhost:8000/auth/talk", {
+      await fetch("https://procollab-backends.onrender.com/auth/talk", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

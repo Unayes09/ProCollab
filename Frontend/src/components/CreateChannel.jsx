@@ -27,7 +27,7 @@ const CreateChannel = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await fetch(
-          "http://localhost:8000/api/verify/" + token,
+          "https://procollab-backends.onrender.com/api/verify/" + token,
           {
             method: "GET",
             headers: {
@@ -50,7 +50,7 @@ const CreateChannel = () => {
     const checkUsername = async () => {
       try {
         const token = localStorage.getItem("token");
-        await fetch("http://localhost:8000/api/username/" + token, {
+        await fetch("https://procollab-backends.onrender.com/api/username/" + token, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -106,7 +106,7 @@ const CreateChannel = () => {
     e.preventDefault();
 
     try {
-      await fetch("http://localhost:8000/auth/createChannel", {
+      await fetch("https://procollab-backends.onrender.com/auth/createChannel", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

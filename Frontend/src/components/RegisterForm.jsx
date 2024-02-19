@@ -19,7 +19,7 @@ const RegisterForm = () => {
         const token = localStorage.getItem("token");
         console.log(token);
         const response = await fetch(
-          "http://localhost:8000/api/verify/" + token,
+          "https://procollab-backends.onrender.com/api/verify/" + token,
           {
             method: "GET",
             headers: {
@@ -89,7 +89,7 @@ const RegisterForm = () => {
     e.preventDefault();
 
     try {
-      await fetch("http://localhost:8000/auth/register", {
+      await fetch("https://procollab-backends.onrender.com/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -117,7 +117,7 @@ const RegisterForm = () => {
       <div className={registercss.mainroot}>
         <div className={registercss.wrapper}>
           <form onSubmit={handleSubmit}>
-            <h1>Registeration Form</h1>
+            <h1>Registration Form</h1>
             <div className={registercss.inputbox}>
               <input
                 type="text"
@@ -165,7 +165,7 @@ const RegisterForm = () => {
             </div>
 
             <div className={registercss.inputgroup}>
-              <label>Tags</label>
+              <label>Interests</label>
               <select onChange={(e) => handleTagChange(e.target.value)}>
                 <option value="">Select Tag</option>
                 {tagOptions.map((tag, index) => (

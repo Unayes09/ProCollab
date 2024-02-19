@@ -14,7 +14,7 @@ const ChannelCard = ({
 }) => {
   const navigate = useNavigate();
   const joindirect = async (e) => {
-    window.location.href = "http://localhost:5173/chatbox?id=" + keys;
+    navigate('/chatbox?id='+keys)
   };
   const join = async (e) => {
     e.preventDefault();
@@ -25,7 +25,7 @@ const ChannelCard = ({
         username: user,
       };
       let jsonData = "";
-      await fetch("http://localhost:8000/auth/join", {
+      await fetch("https://procollab-backends.onrender.com/auth/join", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -33,7 +33,7 @@ const ChannelCard = ({
         body: JSON.stringify(formData),
       }).then(async (response) => {
         const data = await response.json();
-        window.location.href = "http://localhost:5173/chatbox?id=" + keys;
+        navigate('/chatbox?id='+keys)
       });
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -87,7 +87,7 @@ function Allchannels() {
       try {
         const token = localStorage.getItem("token");
         const response = await fetch(
-          "http://localhost:8000/api/verify/" + token,
+          "https://procollab-backends.onrender.com/api/verify/" + token,
           {
             method: "GET",
             headers: {
@@ -108,7 +108,7 @@ function Allchannels() {
     const checkUsername = async () => {
       try {
         const token = localStorage.getItem("token");
-        await fetch("http://localhost:8000/api/username/" + token, {
+        await fetch("https://procollab-backends.onrender.com/api/username/" + token, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -136,7 +136,7 @@ function Allchannels() {
         console.log(user);
         let response;
         if (search == "") {
-          response = await fetch("http://localhost:8000/api/channels", {
+          response = await fetch("https://procollab-backends.onrender.com/api/channels", {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
@@ -144,7 +144,7 @@ function Allchannels() {
           });
         } else {
           response = await fetch(
-            "http://localhost:8000/api/channelSearch?word=" + search,
+            "https://procollab-backends.onrender.com/api/channelSearch?word=" + search,
             {
               method: "GET",
               headers: {

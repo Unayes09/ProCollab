@@ -20,7 +20,7 @@ const ProjectCard = ({ keys, owner, name, description, imageUrl, tags }) => {
               </span>
             ))}
         </div>
-        <a href={"http://localhost:5173/projectpage?id=" + keys}>
+        <a href={"projectpage?id=" + keys}>
           <button className={homecss.see_more}>See More</button>
         </a>
       </div>
@@ -44,7 +44,7 @@ function Home() {
       try {
         const token = localStorage.getItem("token");
         const response = await fetch(
-          "http://localhost:8000/api/verify/" + token,
+          "https://procollab-backends.onrender.com/api/verify/" + token,
           {
             method: "GET",
             headers: {
@@ -65,7 +65,7 @@ function Home() {
     const checkUsername = async () => {
       try {
         const token = localStorage.getItem("token");
-        await fetch("http://localhost:8000/api/username/" + token, {
+        await fetch("https://procollab-backends.onrender.com/api/username/" + token, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -94,7 +94,7 @@ function Home() {
       try {
         let response;
         if (search == "") {
-          response = await fetch("http://localhost:8000/api/projects", {
+          response = await fetch("https://procollab-backends.onrender.com/api/projects", {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
@@ -102,7 +102,7 @@ function Home() {
           });
         } else {
           response = await fetch(
-            "http://localhost:8000/api/search?word=" + search,
+            "https://procollab-backends.onrender.com/api/search?word=" + search,
             {
               method: "GET",
               headers: {
@@ -130,7 +130,7 @@ function Home() {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await fetch("http://localhost:8000/api/projects", {
+        const response = await fetch("https://procollab-backends.onrender.com/api/projects", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -159,7 +159,7 @@ function Home() {
       try {
         console.log(user);
         const response = await fetch(
-          "http://localhost:8000/api/channels?user=" + user,
+          "https://procollab-backends.onrender.com/api/channels?user=" + user,
           {
             method: "GET",
             headers: {
@@ -195,7 +195,7 @@ function Home() {
         feedback: FeedBackData,
       };
       let jsonData = "";
-      await fetch("http://localhost:8000/auth/feedback", {
+      await fetch("https://procollab-backends.onrender.com/auth/feedback", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -218,7 +218,7 @@ function Home() {
             <ul className={homecss.channelList}>
               {channel.map((channel) => (
                 <li key={channel._id}>
-                  <a href={"http://localhost:5173/chatbox?id=" + channel._id}>
+                  <a href={"chatbox?id=" + channel._id}>
                     {channel.title}
                   </a>
                 </li>
