@@ -24,8 +24,11 @@
             align-items: center;
             min-height: 100vh;
     padding-left: 33%;
+    padding-top: 80px;
+
 }
 .wrapper {
+   
     width: 500px;
     background: transparent;
     border: 2px solid rgba(255, 255, 255, .2);
