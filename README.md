@@ -1,9 +1,16 @@
 # ProCollab - Collaborative Platform for Knowledge Sharing
 
-[API Documentation]([path/to/your/readme/file.md](https://documenter.getpostman.com/view/31012961/2sA2r3ZktU))
+### <a href="https://www.youtube.com/watch?v=0TmC4qXVzks" target="_blank">Youtube Demonstration Video</a>
 
 ## Description:
 ProCollab is a collaborative platform designed to facilitate knowledge sharing among users. It provides features such as registration with email verification, resource-based user interest recommendations, sensitive search for projects and channels, user feedback mechanisms, discussion forums, multimedia information sharing capabilities, and reputation scoring based on contributions.
+
+## Achievements :
+
+Our Project has been selected as one of the top 11 finalist for the DevSprint 2024 (Organized by IEEE student branch, BUET) in Bangladesh. 
+<img src="unayes-dev24.jpeg" width="400" height="298" >
+<img src="nayem-dev24.jpeg"  width="400" height="298" >
+<img src="tarek-dev24.jpeg"  width="400" height="298" >
 
 ## Key Features:
 
@@ -27,6 +34,22 @@ ProCollab is a collaborative platform designed to facilitate knowledge sharing a
 
 7. **Reputation Score Based on Contributions:**
    - A reputation score is assigned to users based on their contributions, including sharing projects, providing feedback, and actively participating in discussions, reflecting their credibility and expertise within the community.
+  
+## Frameworks and Technologies Used
+
+### Frontend
+
+- **React.js**: A JavaScript library for building user interfaces.
+
+### Backend
+
+- **Node.js**: A JavaScript runtime built on Chrome's V8 JavaScript engine for building server-side applications.
+
+- **Express.js**: A minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.
+
+### Database
+
+- **MongoDB**: A NoSQL document database that provides high performance, high availability, and easy scalability.
 
 ## Acknowledgments:
 We express our gratitude to the open-source community for their valuable contributions and support in developing ProCollab.
