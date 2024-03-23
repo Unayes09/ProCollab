@@ -7,7 +7,8 @@ ProCollab is a collaborative platform designed to facilitate knowledge sharing a
 
 ## Achievements :
 
-Our Project has been selected as one of the top 11 finalist for the DevSprint 2024 (Organized by IEEE student branch, BUET) in Bangladesh. 
+### Our Project has been selected as one of the top 11 finalist for the DevSprint 2024 (Organized by IEEE student branch, BUET) in Bangladesh. 
+
 <img src="unayes-dev24.jpeg" width="400" height="298" >
 <img src="nayem-dev24.jpeg"  width="400" height="298" >
 <img src="tarek-dev24.jpeg"  width="400" height="298" >
